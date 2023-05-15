@@ -1,0 +1,16 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+body{
+    background-color: lightseagreen;
+}
+nav a:link{
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    color: #000;
+    background-color: orange;
+}

@@ -1,0 +1,19 @@
+// javascript for custom form validation
+
+
+function validateForm() {
+    var e = "";
+    var validity = true;
+        
+    var emailregex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    var passwordregex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+        
+    e = document.getElementById("InputEmail");
+    e.classList.remove("is-invalid");			
+    if ( (e.value == "") || !emailregex.test(e.value) ) {
+        e.classList.add("is-invalid");
+        validity = false;
+    }
+                
+    return validity;
+}
