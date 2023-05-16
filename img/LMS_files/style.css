@@ -1,0 +1,347 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0px;
+    margin: 0px;  
+    /* get rid of the horizontal scroll for aesthetics */
+    overflow-x: hidden;
+    
+}
+
+nav a:link{
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    color: #000;
+    background-color: orange;
+}
+
+
+
+
+
+/*===========================
+        Navigation bar 
+=============================*/
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed; /*to fix the menu*/
+    width: 100%; /*to position the menu 100% in the whole screen*/
+    background-color:  rgb(66, 71, 84);/*Gelos Charcoal*/
+    font-size: small;
+    padding: 7.5px;
+
+}
+
+/* centralize the navbar items and align verticaly (removing unwanted padding) */
+li.nav-item, a.nav-link.zone, form.d-flex{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    padding-top: 0px;
+    margin-top: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+/*  */
+button.btn.btn-secondary{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+/* Adding padding for the <a> tag elements in the navbar */
+a{
+    margin-right: 10px;
+    margin-left: 10px; 
+   }
+   
+/*for searchbox*/
+form{
+    margin-right: 10px;
+    margin-left: 10px; 
+   }
+
+.form-control, .form-control:active,
+.form-control:hover, .form-control:empty {
+    background: rgb(66, 71, 84);/*Gelos Charcoal*/
+    color:white;
+    border-color: rgb(66, 71, 84);
+}
+
+.search-box
+{
+    background: rgb(66, 71, 84);/*Gelos Charcoal*/;
+    max-width: 55rem;
+    width: 100%;
+    height: .5rem;
+    padding: 1rem .2rem;
+    border-color: rgb(66, 71, 84);/*Gelos Charcoal*/;
+    border-radius: 0rem;
+    display: flex;
+    align-items: center;
+    border: 0.1rem solid rgb(66, 71, 84);/*Gelos Charcoal*/;
+    outline: 0;
+}
+
+.input-small{
+    background: rgb(66, 71, 84);/*Gelos Charcoal*/;
+    color:white; 
+    border-color: rgb(66, 71, 84);
+}
+
+/* hover over <button> tag search button gets highlighted in gelos gold */
+
+/*for magnifying glass button*/
+.btn-secondary{
+    background: rgb(66, 71, 84);/*Gelos Charcoal*/; 
+    border: rgb(66, 71, 84);
+    padding-top: 2px;
+    padding-right: 1px;
+    padding-left: 0;
+}
+/*when hovering*/
+.btn-secondary:hover{
+    background: rgb(66, 71, 84);/*Gelos Charcoal*/;
+    color:black;  
+}
+/*when clciking*/
+.btn-secondary.btn-secondary:active{
+    background: rgb(66, 71, 84);/*Gelos Charcoal*/;
+    color:rgb(0, 0, 0);  
+    font-weight: bold;
+}
+
+/********************/
+/*for search button "currently incative"*/
+.btn-outline-dark{
+    background: rgb(207, 42, 53);
+    color: black;
+}
+.btn-outline-dark:hover{
+    background: rgb(221, 171, 94);/*"Gelos Gold"*/
+    color: black;
+}
+
+
+
+/* ===================
+        General
+======================*/
+.container-text
+{
+    background-color:rgb(255, 255, 255);
+    /* margin: 100px; */
+    margin-top: 50px;
+    /* max-width: 563px; */
+}
+.container-text-small
+{
+    background-color:rgb(255, 255, 255);
+    /* margin: 100px; */
+    margin-top: 50px;
+    max-width: 563px;
+}
+
+.row
+{
+    background-color: rgb(255, 255, 255);
+}
+
+.row.d-flex.justify-content-center img:hover {
+    object-fit: contain;
+    opacity: 0.5;
+}  
+
+footer{
+    margin-top: 200px;
+    display:flex;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 600px)
+{
+body{
+    background-color: rgb(255, 255, 255);
+}
+}
+
+@media only screen and (max-width: 991px)
+{
+.container-text
+{
+    margin:10px;
+    margin-top: 50px;
+    
+}
+}
+
+/* brand flowing nicely from desktop view to mobile without duplication */
+.gelos-brand-center, .gelos-brand-start{
+    width:20px
+}
+
+@media only screen and (min-width: 991px)
+{
+nav .gelos-brand-center{
+    width: 0;
+    overflow: hidden;
+    margin-left: 100px;
+}
+}
+
+@media only screen and (max-width: 991px)
+{
+nav .gelos-brand-start{
+    width: 0;
+    height: 0;
+    margin-left: 0px;
+  
+}
+
+nav .a .d-md-block, .d-none, .navbar-brand{
+    padding: 0;
+    margin: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+li.nav-item, a.nav-link.zone, form.d-flex{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+}
+
+/* ====================
+        Carousel
+=======================*/
+.carousel img {
+    display: block;
+    /*max-height: 720px; */
+    object-fit: contain;
+    margin-top: 50px; /* Add a top margin to avoid content overlay when in mobile screen*/
+    margin-right: 0px;
+    justify-items: center;
+}
+
+
+
+/* =====================
+    Hamburger Menu
+========================*/
+/*
+Animated Custom Hamburger Icon In NavBar Bootstrap
+Adaptation from: https://www.youtube.com/watch?v=_MrShB9fh7U
+Author: A designer who codes
+*/  
+
+/* menu lines */
+.navbar-toggler {
+    width: 10px; 
+    height: 10px;/*the height was kept in 10px to make the lines centralized in the navbar */
+    position: relative;
+    padding: 17.5px; 
+    margin-right: 15px;
+    /*this padding was added in order to avoid navbar hight difference at the transition from mobile
+    to desktop screen (screen with higher width).*/
+
+}
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus{
+    outline: none;
+    box-shadow:none;
+    border:0;
+}
+.navbar-toggler span{
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Hamburger menu icon*/
+.toggler-icon {
+    display: block;
+    position: absolute;
+    height: 1.6px;
+    width: 17.5px;
+    background-color: rgb(221, 171, 94);/*hamburger menu line color "Gelos Gold"*/
+    border-radius: 1px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .3s ease-in-out; /*hamburger menu line transition to X shape nice and smooth*/
+}
+
+/* 
+middle line was deleted due to aesthetics
+.middle-line{
+    margin-top: 0px;
+} 
+*/
+
+/* when navigation is clicked*/
+
+.navbar-toggler .top-line{
+    height: 2px !important; /* hamburger menu line thickness*/
+    margin-top: 0px;
+    transform: rotate(135deg); /*line transition to X shape centralized*/
+}
+
+.navbar-toggler .middle-line{
+    opacity: 0;
+    filter: alpha(opacity=0);
+    padding: 10px;
+}
+
+.navbar-toggler .bottom-line{
+    height: 2px !important;
+    margin-top: 0px;
+    transform: rotate(-135deg); /*line transition to X shape centralized*/
+}
+
+/* State when the navbar colapsed */
+
+.navbar-toggler.collapsed .top-line {
+margin-top: -7px; /*position the hamburger menu line not to far appart from the second*/
+transform: rotate(0deg);
+}
+
+/*
+Hamburger menu looks better with two lines, for that reason i removed the middle line. 
+.navbar-toggler.collapsed .middle-line {
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+ */
+
+.navbar-toggler.collapsed .bottom-line {
+    margin-top: 7px;
+    transform: rotate(0deg);
+}
+
+
+
+/* 
+====================
+       Footer
+====================
+
+*/
+.icon-center, .icon-start{
+    width:20px
+    height: 15px;
+}

@@ -3,6 +3,7 @@ include_once("src/inc/header.inc.php");
 
 ?>
 
+<br>
 <h2>This is the main content</h2>
 
 

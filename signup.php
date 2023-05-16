@@ -22,36 +22,74 @@ Any errors are to be reported as errors so that corrections can be made. A new u
 
 -->
 
+<?php
+include_once("src/inc/header.inc.php");
+?>
+
+<div class="container-sm d-flex justify-content-center" style="margin-top: 50px;">
+    <!--     Create Login form here and on success redirect user to the dashboard    -->
+    <section class="container-form col bd-content ps-lg-2">
+
+        <h1>Sign Up</h1><br><br>
+        <form class="col align-self-center" action="#" method="post">
+            <div class="row mb-3">
+                <div class="col align-self-center">
+                    <label for="firstname" class="form-label">First Name</label>
+                    <div class="col-12">
+                        <input type="text" class="form-control" id="firstname" name="firstname" aria-label="First name">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="lastname" class="form-label">Last Name</label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" id="lastname" name="lastname" aria-label="Last name">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="email" class="form-label">Email</label>
+                <div class="col-sm-12">
+                    <input type="email" class="form-control" id="email" name="email">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="pass" class="form-label">Password</label>
+                <div class="col-sm-12">
+                    <input type="password" class="form-control" id="pass" name="pass">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="retypePass" class="form-label">Confirm Password</label>
+                <div class="col-sm-12">
+                    <input type="password" class="form-control" id="retypePass" name="retypePass">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
 
 
-<!--     Create Login form here and on success redirect user to the dashboard    -->
-<section>
-    <h1>Sign Up</h1>
-    <form action="#" method="post">
-        <label>First Name</label><br>
-        <input type="text" id="username" name="username"><br><br>
-        <label>Last Name</label><br>
-        <input type="text" id="pass" name="pass"><br><br>
-        <label>Email address</label><br>
-        <input type="text" id="username" name="username"><br><br>
-        <label>Password</label><br>
-        <input type="text" id="pass" name="pass"><br><br>
-        <label>Re-type Password</label><br>
-        <input type="text" id="pass" name="pass"><br><br>
+        </form>
 
-        <input type="submit">
+        <p>
+            <br><br>
+            Already have an account?
+            <br>
+            <a href="login.php" class="btn btn-outline-secondary btn-sm" type="button">Log in</a>
+        </p>
 
-    </form>
 
-    <p>
-        <br>
-        Dont have an account? Register Today!
-        <br>
-        <a href="signup.php">Sign Up</a>
-    </p>
+    </section>
+</div>
 
-</section>
+
+
+</body>
 
 <?php
-include_once("footer.inc.php");
+include_once("src/inc/footer.inc.php");
 ?>

@@ -53,5 +53,5 @@ Any errors are to be reported as errors so that corrections can be made. A new u
 </section>
 
 <?php
-include_once("footer.inc.php");
+include_once("src/inc/footer.inc.php");
 ?>

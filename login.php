@@ -12,27 +12,52 @@
 System is to utilize a single sign-on location for all users (members and admins). Logged in sessions shall last no more than 2 hours.
 
 -->
-<section>
-    <h1>Login</h1>
-    <form action="#" method="post">
-        <label>Username</label><br>
-        <input type="text" id="username" name="username"><br><br>
-        <label>Password</label><br>
-        <input type="text" id="pass" name="pass"><br><br>
+<?php
+include_once("src/inc/header.inc.php");
+?>
 
-        <input type="submit">
+<div class="container-sm d-flex justify-content-center" style="margin-top: 50px;">
+    <!--     Create Login form here and on success redirect user to the dashboard    -->
+    <section class="container-form col bd-content ps-lg-2">
 
-    </form>
+        <h1>Log in</h1><br><br>
+        <form class="col align-self-center" action="#" method="post">
 
-    <p>
-        <br>
-        Dont have an account? Register Today!
-        <br>
-        <a href="signup.php">Sign p</a>
-    </p>
+            <div class="row mb-3">
+                <label for="username" class="form-label">Username</label>
+                <div class="col-sm-12">
+                    <input type="email" class="form-control" id="username" name="username">
+                    <div id="emailHelp" class="form-text">Use your email address to log in.</div>
+                </div>
+            </div>
 
-</section>
+            <div class="row mb-3">
+                <label for="pass" class="form-label">Password</label>
+                <div class="col-sm-12">
+                    <input type="password" class="form-control" id="pass" name="pass">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+
+        </form>
+
+        <p>
+            <br><br>
+            Dont have an account? Register Today!
+            <br>
+            <a href="signup.php" class="btn btn-primary btn-sm" type="button">Sign up</a>
+        </p>
+
+
+    </section>
+</div>
+
+
+
+</body>
 
 <?php
-include_once("footer.inc.php");
+include_once("src/inc/footer.inc.php");
 ?>

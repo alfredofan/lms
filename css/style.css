@@ -3,14 +3,374 @@
     margin:0;
     box-sizing: border-box;
 }
-body{
-    background-color: lightseagreen;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0px;
+    margin: 0px;  
+    /* get rid of the horizontal scroll for aesthetics */
+    overflow-x: hidden;
+    
 }
-nav a:link{
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1.1em;
-    text-transform: uppercase;
-    color: #000;
-    background-color: orange;
+
+
+
+
+
+
+/*===========================
+        Navigation bar 
+=============================*/
+.navbar {
+    overflow: hidden;
+    background-color: white;
+    position: fixed; /*to fix the menu*/
+    width: 100%; /*to position the menu 100% in the whole screen*/
+    padding: 7.5px;
+    font-size: 16px;
+    font-weight:500;
+
+    /*   z-index should be above .close-navbar-toggler */
+    z-index:2;
+
+}
+
+
+
+    /* close navbar when clicking outside */
+    .close-navbar-toggler{
+      position:absolute;
+      top:0;
+      left:0;
+      height:100%;
+      width:100%;
+      z-index:1;
+      cursor:pointer;
+    }
+    .close-navbar-toggler.collapsed{
+      z-index:-1;
+    }
+
+/* centralize the navbar items and align verticaly (removing unwanted padding) */
+li.nav-item, a.nav-link.zone, form.d-flex{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    padding-top: 0px;
+    margin-top: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+/* nav log in and sign up buttons customization */
+.btn.btn-outline-secondary, .btn.btn-outline-secondary:active{
+    color: black;
+    border-color: black;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: small;
+
+}
+
+.btn.btn-primary, .btn.btn-primary:active{
+    background-color: black;
+    color: white;
+    border-color: black;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: small;
+}
+
+button.btn.btn-outline-secondary:hover,
+.btn.btn-outline-secondary:hover{
+    background-color: white;
+    opacity: 0.8;
+}
+
+button.btn.btn-primary:hover{
+opacity: 0.8;
+}
+/* font family for navbar */
+nav a, nav button {
+    color: black;
+    padding: 0px;
+    margin: 0px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  
+}
+
+
+/* 1400px screen width was changing container size   */
+.container-xl {
+   max-width: 1140px;
+
+}
+/* Adding padding for the <a> of the <li> elements inside the <ul> elements tag elements in the navbar */
+ul li a {
+    margin-right: 10px;
+    margin-left: 10px; 
+    
+}
+
+
+/*customization for form inputbox*/
+form{
+margin-right: 10px;
+margin-left: 10px; 
+
+}
+
+.form-control, .form-control:active,
+.form-control:hover, .form-control:empty {
+    background: rgb(255, 255, 255);/*Gelos Charcoal*/
+    color:rgb(0, 0, 0);
+    border-color: rgb(66, 71, 84);
+}
+
+
+/* Logo opacity */
+nav img:hover {
+    opacity: 0.8;
+}  
+/* ===================
+        General
+======================*/
+.container-text
+{
+    background-color:rgb(255, 255, 255);
+    /* margin: 100px; */
+    margin-top: 50px;
+    /* max-width: 563px; */
+}
+.container-form
+{
+    background-color:rgb(255, 255, 255);
+    /* margin: 100px; */
+    margin-top: 25px;
+    max-width: 450px;
+}
+
+.container-sm {
+    max-width: 1140px; 
+}
+
+.row
+{
+    background-color: rgb(255, 255, 255);
+}
+
+.row.d-flex.justify-content-center img:hover {
+    object-fit: contain;
+    opacity: 0.5;
+}  
+
+footer{
+    margin-top: 200px;
+    display:flex;
+    justify-content: center;
+}
+
+@media screen and (min-width: 991px) {
+    a img.logo-center {
+      display: none;
+    }
+  }
+
+
+
+
+
+/* logo flowing nicely from desktop view to mobile without duplication */
+.logo-center, .logo-start{
+    height: 35px;    
+    padding: 0px;
+    margin: 0px;
+    
+}
+
+.navbar-logo.d-none.d-md-block{
+    padding: 0px;
+    margin: 0px;
+}
+
+@media only screen and (min-width: 991px)
+{
+nav .logo-center{
+    width: 0;
+    overflow: hidden;
+    margin-left: 100px;
+}
+}
+
+@media only screen and (max-width: 991px)
+{
+nav .logo-start{
+    width: 0;
+    height: 0;
+    margin-left: 0px;
+    
+  
+}
+
+nav .a .d-md-block, .d-none, .navbar-logo{
+    padding: 0;
+    margin: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+li.nav-item, a.nav-link.zone, form.d-flex{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: black;
+}
+
+/* navbar collapsed menu customization */
+.collapse a {
+    padding: 8px;
+    font-size: clamp(22px, 4vw, 24px);
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+
+  }
+  
+  .collapse a:hover, .collapse a:focus {
+    color: #6d6d6d;
+  }
+   
+
+
+
+}
+
+div div input {
+    max-width: 400px;
+}
+
+
+/* ====================
+        Carousel
+=======================*/
+.carousel img {
+    display: block;
+    /*max-height: 720px; */
+    object-fit: contain;
+    margin-top: 50px; /* Add a top margin to avoid content overlay when in mobile screen*/
+    margin-right: 0px;
+    justify-items: center;
+}
+
+
+
+/* =====================
+    Hamburger Menu
+========================*/
+/*
+Animated Custom Hamburger Icon In NavBar Bootstrap
+Adaptation from: https://www.youtube.com/watch?v=_MrShB9fh7U
+Author: A designer who codes
+*/  
+
+/* menu lines */
+.navbar-toggler {
+    width: 10px; 
+    height: 10px;/*the height was kept in 10px to make the lines centralized in the navbar */
+    position: relative;
+    padding: 17.5px; 
+    margin-right: 15px;
+    /*this padding was added in order to avoid navbar hight difference at the transition from mobile
+    to desktop screen (screen with higher width).*/
+
+}
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus{
+    outline: none;
+    box-shadow:none;
+    border:0;
+}
+.navbar-toggler span{
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Hamburger menu icon*/
+.toggler-icon {
+    display: block;
+    position: absolute;
+    height: 1.6px;
+    width: 17.5px;
+    background-color: rgb(0, 0, 0);/*hamburger menu line color "black"*/
+    border-radius: 1px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .3s ease-in-out; /*hamburger menu line transition to X shape nice and smooth*/
+}
+
+/* 
+middle line was deleted due to aesthetics
+.middle-line{
+    margin-top: 0px;
+} 
+*/
+
+/* when navigation is clicked*/
+
+.navbar-toggler .top-line{
+    height: 2px !important; /* hamburger menu line thickness*/
+    margin-top: 0px;
+    transform: rotate(135deg); /*line transition to X shape centralized*/
+}
+
+.navbar-toggler .middle-line{
+    opacity: 0;
+    filter: alpha(opacity=0);
+    padding: 10px;
+}
+
+.navbar-toggler .bottom-line{
+    height: 2px !important;
+    margin-top: 0px;
+    transform: rotate(-135deg); /*line transition to X shape centralized*/
+}
+
+/* State when the navbar colapsed */
+
+.navbar-toggler.collapsed .top-line {
+margin-top: -7px; /*position the hamburger menu line not to far appart from the second*/
+transform: rotate(0deg);
+}
+
+/*
+Hamburger menu looks better with two lines, for that reason i removed the middle line. 
+.navbar-toggler.collapsed .middle-line {
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+ */
+
+.navbar-toggler.collapsed .bottom-line {
+    margin-top: 7px;
+    transform: rotate(0deg);
+}
+
+
+/* 
+====================
+       Footer
+====================
+
+*/
+/* 1400px screen width was changing container size   */
+footer .container-sm {
+    max-width: 1140px; 
+}
+    
+.icon-center, .icon-start{
+    width:20px;
+    height: 15px;
 }
