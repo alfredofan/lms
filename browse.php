@@ -43,7 +43,7 @@ include_once("src/inc/header.inc.php");
 <!-- Library Grid -->
 <div class="container-lg d-flex justify-content-center align-items-center">
 
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="row  row-cols-md-3 g-4">
         <div class="col d-flex justify-content-center">
             <div class="row  container-card " style="width: 18rem; padding:10px">
                 <img src="img\book_1.png" class="" style="padding:20px;" alt="...">

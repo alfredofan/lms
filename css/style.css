@@ -512,6 +512,8 @@ footer .container-sm {
 .container-card{
     display: inline-flex;
     align-content: space-between;
+    /* padding: 0px;
+    margin: 0px; */
 }
 
 div .card-body{
