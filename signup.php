@@ -26,7 +26,7 @@ Any errors are to be reported as errors so that corrections can be made. A new u
 include_once("src/inc/header.inc.php");
 ?>
 
-<div class="container-sm d-flex justify-content-center" style="margin-top: 50px;">
+<div class="container-lg d-flex justify-content-center align-items-center">
     <!--     Create Login form here and on success redirect user to the dashboard    -->
     <section class="container-form col bd-content ps-lg-2">
 
@@ -70,7 +70,7 @@ include_once("src/inc/header.inc.php");
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
 
 
         </form>

@@ -31,7 +31,7 @@
     <nav class="sticky-top navbar navbar-expand-lg d-flex justify-content-center" aria-label="Main navigation" id="nav">
 
         <div class="container-xl d-flex justify-content-beetween">
-            <a href="<?php echo "index.php"; ?>">
+            <a href="index.php">
                 <img src="img/AF_LMS_logo.png" class="logo-center" alt="AF-LMS-logo">
                 <!-- AF LMS Logo -->
             </a>
@@ -48,7 +48,7 @@
             <div class="collapse navbar-collapse justify-content-between" data-toggle="collapse" data-target=".nav-collapse" id="navbarSupportedContent">
 
 
-                <a class="navbar-logo d-none d-md-block d-flex justify-content-start" href="index.html">
+                <a class="navbar-logo d-none d-md-block d-flex justify-content-start" href="index.php">
                     <img src="img/AF_LMS_logo.png" alt="AF-LMS-logo" class="logo-start">
                 </a>
 
@@ -57,7 +57,7 @@
                     <!-- added a bit of margin to center navbar items better since the search box is "camuflated" -->
 
                     <li class="nav-item">
-                        <a class="nav-link zone" href="index.html#section1">Browse</a>
+                        <a class="nav-link zone" href="browse.php">Browse</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link zone" href="index.html#section2">Return/Delete</a>

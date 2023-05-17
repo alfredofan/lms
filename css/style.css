@@ -3,16 +3,28 @@
     margin:0;
     box-sizing: border-box;
 }
+html {
+    min-height: 100%;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     padding: 0px;
     margin: 0px;  
     /* get rid of the horizontal scroll for aesthetics */
-    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;   
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
     
 }
 
-
+#content {  
+    min-height: 100%;
+}
 
 
 
@@ -34,7 +46,11 @@ body {
 
 }
 
+nav div .container-xl{
+    position: absolute;
+    z-index: -1;  /* make overlay all content  */
 
+}
 
     /* close navbar when clicking outside */
     .close-navbar-toggler{
@@ -59,7 +75,12 @@ li.nav-item, a.nav-link.zone, form.d-flex{
     margin-top: 0px;
     padding-bottom: 0px;
     margin-bottom: 0px;
+    color: black;
 }
+a.nav-link.zone:hover, a.nav-link.zone:active{
+    opacity: .8;
+}
+
 /* nav log in and sign up buttons customization */
 .btn.btn-outline-secondary, .btn.btn-outline-secondary:active{
     color: black;
@@ -83,7 +104,7 @@ button.btn.btn-outline-secondary:hover,
     opacity: 0.8;
 }
 
-button.btn.btn-primary:hover{
+.btn.btn-primary:hover {
 opacity: 0.8;
 }
 /* font family for navbar */
@@ -131,6 +152,21 @@ nav img:hover {
 /* ===================
         General
 ======================*/
+/* backgroud image for banner  */
+/* body div .container {
+    background-image: url('img\bannerLMSbw_optimized.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: auto;
+  } */
+
+/* customization for card */
+.card{
+    border-radius: 0%;
+    border-style: none;
+}
+
 .container-text
 {
     background-color:rgb(255, 255, 255);
@@ -142,11 +178,12 @@ nav img:hover {
 {
     background-color:rgb(255, 255, 255);
     /* margin: 100px; */
-    margin-top: 25px;
+    /* margin-top: 25px; */
     max-width: 450px;
 }
 
-.container-sm {
+body .container-lg {
+    min-height: 80vh;
     max-width: 1140px; 
 }
 
@@ -161,9 +198,11 @@ nav img:hover {
 }  
 
 footer{
-    margin-top: 200px;
+    margin-top: auto;
     display:flex;
     justify-content: center;
+    bottom: 0px;
+    position:static;
 }
 
 @media screen and (min-width: 991px) {
@@ -374,3 +413,192 @@ footer .container-sm {
     width:20px;
     height: 15px;
 }
+
+
+/*
+*
+* ==========================================
+*               Card / Banner
+* ==========================================
+*
+*/
+
+
+.container-card{
+    max-width: max-content;
+    min-height: 20vh;
+    margin-bottom: 20px ;
+}
+
+.container-card img{
+    width: inherit;
+    min-height: 10vh;
+    
+
+}
+
+.card-img-overlay{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*padding: 100px 100px;*/
+   
+
+}
+/*
+*
+* ==========================================
+*               Seachbox 
+* ==========================================
+*
+*/
+
+.form-control:focus {
+    box-shadow: none;
+  }
+  
+  .form-control-underlined {
+    border-width: 0;
+    border-bottom-width: 1px;
+    border-radius: 0;
+    padding-left: 0;
+  }
+ 
+  
+  .form-control::placeholder {
+    font-size: 0.95rem;
+    color: #aaa;
+    font-style: italic;
+  }
+  
+  div .col-4{
+    
+    min-width: 300px;
+    max-width: 450px;
+    position: absolute;
+    z-index: 0; /* make overlay all content but navbar */
+  }
+
+
+/*
+*
+* ==========================================
+*              Browse Books Grid 
+* ==========================================
+*
+*/
+
+
+.container-card-img{
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 350px;
+    
+  }
+
+
+.card-link{
+    text-decoration: none;
+    color: gray ;
+}
+
+.card-link:hover, .card-link:active{
+    text-decoration: none;
+    color: black ;
+}
+
+.container-card{
+    display: inline-flex;
+    align-content: space-between;
+}
+
+div .card-body{
+    margin-left: 20px;
+}
+
+
+  /*
+********************************
+  Book Grid / Container / Zone
+********************************
+*/
+
+/* .container{
+    /*display: flex;*/
+    /*flex-flow: wrap;*/
+    /*justify-items: center;*/
+    /*align-items: center;*/
+    /* padding: 0px 10px; 
+
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
+    grid-template-rows:3fr;
+}
+
+
+.responsive {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  max-width: auto;
+  height: auto;  
+}
+
+
+.container .zoneIcons {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
+    padding:40px 20px;
+    margin: 20px 10px; 
+    cursor:pointer;
+    display:block;
+    color:#FFF;
+    background-color: rgb(255, 255, 255);
+    font-size:2em;
+    border-radius:4px;
+    /* border:1px solid #bbb; */
+    /* transition: all 0.3s linear; 
+    
+    
+}
+.container .zoneIcons:hover {
+    -webkit-box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+    -moz-box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+    -o-box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+    box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+}
+
+
+
+
+.container .zone {
+    /*padding:10px 50px;*/
+    /*margin: auto 0; */
+    /* cursor:pointer; */
+    /*display:block;*/  
+    /* color:#FFF; 
+    font-size:2em;
+    border-radius:4px;
+    /* border:1px solid #bbb; 
+    transition: all 0.3s linear;
+}
+
+.container .zone:hover {
+    -webkit-box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+    -moz-box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+    -o-box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+    box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+}
+
+
+
+/*https://paulund.co.uk/how-to-create-shiny-css-buttons*/
+/***********************************************************************
+ *  Blue Background
+ **********************************************************************/
+ 
