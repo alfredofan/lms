@@ -74,46 +74,7 @@ include_once("src/inc/header.inc.php");
             <!-- normal user -->
             <input style="display: none;" type="text" name="typename" value="User">
             <input style="display: none;" type="number" name="type" value="2">
-            <input type="submit" name="submit" class="btn btn-primary btn-sm">
-
-
-            <?php
-
-
-            if (isset($_POST['submit'])) {
-
-                //check duplicates for email 
-                $count = 0;
-                $sql = "SELECT email FROM `user`";
-                $res = mysqli_query($db, $sql);
-
-                while ($row = mysqli_fetch_assoc($result)) {
-                    if ($row['email'] == $_POST['email']) {
-                        $count = $count + 1;
-                    }
-                }
-                if ($count = 0)
-
-                    //if no duplicates found, user can register
-                    mysqli_query($db, "INSERT INTO `USER` (`firstname`, `lastname`, `email`, `password`, `typename`, `type`) 
-                 VALUES('$_POST[firstname]', '$_POST[lastname]','$_POST[email]','$_POST[password]',
-                 '$_POST[typename]','$_POST[type]');");
-            ?>
-                <script type="text/javascript">
-                    alert("Registration Successfull");
-                </script>
-            <?php
-            }
-            // if duplicate is found
-            else {
-            ?>
-                <script type="text/javascript">
-                    alert("The email already exist.");
-                </script>
-            <?php
-            }
-
-            ?>
+            <button type="submit" name="submit" class="btn btn-primary btn-sm">Submit</button>
 
 
         </form>
@@ -129,6 +90,44 @@ include_once("src/inc/header.inc.php");
     </section>
 </div>
 
+
+<?php
+
+
+if (isset($_POST['submit'])) {
+
+    //check duplicates for email 
+    $count = 0;
+    $sql = "SELECT email FROM user";
+    $result = mysqli_query($db, $sql);
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        if ($row['email'] == $_POST['email']) {
+            $count = $count + 1;
+        }
+    }
+    if ($count == 0) {
+
+        //if no duplicates found, user can register
+        mysqli_query($db, "INSERT INTO `USER` (`firstname`, `lastname`, `email`, `password`, `typename`, `type`) 
+     VALUES('$_POST[firstname]', '$_POST[lastname]','$_POST[email]','$_POST[password]',
+     '$_POST[typename]','$_POST[type]');");
+?>
+        <script type="text/javascript">
+            alert("Registration Successfull");
+        </script>
+    <?php
+    }
+    // if duplicate is found
+    else {
+    ?>
+        <script type="text/javascript">
+            alert("The email already exist.");
+        </script>
+<?php
+    }
+}
+?>
 
 
 </body>

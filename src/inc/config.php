@@ -10,6 +10,6 @@ if (!$db) {
     die("Connection Failed: " . mysqli_connect_error());
 }
 
-echo "Connected Successfully.";
-echo '<script>alert("Connected Successfully.")</script>'; //testing conection
+// echo "Connected Successfully.";
+// echo '<script>alert("Connected Successfully.")</script>'; //testing conection
 ?>
