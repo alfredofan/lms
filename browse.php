@@ -53,7 +53,7 @@ include_once("src/inc/header.inc.php");
                     <p class="card-text" style="margin-bottom: 0px;"><small>Details &#8231; Macmillan Collectors Library</small></p>
                     <p style="color:gray;"><small>Available</small></p>
                     <a href="signup.php" class="btn btn-primary btn-sm" type="button">Borrow</a>
-                    <a href="login.php" class="btn btn-outline-secondary btn-sm" type="button">Edit</a>
+                    <a href="book.php" class="btn btn-outline-secondary btn-sm" type="button">Edit</a>
                 </div>
             </div>
         </div>
@@ -67,7 +67,7 @@ include_once("src/inc/header.inc.php");
                     <p class="card-text" style="margin-bottom: 0px;"><small>Details &#8231; Penguin Books</small></p>
                     <p style="color:crimson;"><small>Not Available</small></p>
                     <a href="signup.php" class="btn btn-primary btn-sm" type="button">Borrow</a>
-                    <a href="login.php" class="btn btn-outline-secondary btn-sm" type="button">Edit</a>
+                    <a href="book.php" class="btn btn-outline-secondary btn-sm" type="button">Edit</a>
                 </div>
             </div>
         </div>
@@ -81,7 +81,7 @@ include_once("src/inc/header.inc.php");
                     <p class="card-text" style="margin-bottom: 0px;"><small>Details &#8231; Oxford Press</small></p>
                     <p style="color:gray;"><small>Available</small></p>
                     <a href="signup.php" class="btn btn-primary btn-sm" type="button">Borrow</a>
-                    <a href="login.php" class="btn btn-outline-secondary btn-sm" type="button">Edit</a>
+                    <a href="book.php" class="btn btn-outline-secondary btn-sm" type="button">Edit</a>
                 </div>
             </div>
         </div>
@@ -95,7 +95,7 @@ include_once("src/inc/header.inc.php");
                     <p class="card-text" style="margin-bottom: 0px;"><small>Details &#8231; Star Publishing</small></p>
                     <p style="color:gray;"><small>Available</small></p>
                     <a href="signup.php" class="btn btn-primary btn-sm" type="button">Borrow</a>
-                    <a href="login.php" class="btn btn-outline-secondary btn-sm" type="button">Edit</a>
+                    <a href="book.php" class="btn btn-outline-secondary btn-sm" type="button">Edit</a>
                 </div>
             </div>
         </div>
@@ -109,7 +109,7 @@ include_once("src/inc/header.inc.php");
                     <p class="card-text" style="margin-bottom: 0px;"><small>Details &#8231; Kinokuniya</small></p>
                     <p style="color:gray;"><small>Available</small></p>
                     <a href="signup.php" class="btn btn-primary btn-sm" type="button">Borrow</a>
-                    <a href="login.php" class="btn btn-outline-secondary btn-sm" type="button">Edit</a>
+                    <a href="book.php" class="btn btn-outline-secondary btn-sm" type="button">Edit</a>
                 </div>
             </div>
         </div>

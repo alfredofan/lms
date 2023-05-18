@@ -139,10 +139,22 @@ margin-left: 10px;
 
 .form-control, .form-control:active,
 .form-control:hover, .form-control:empty {
-    background: rgb(255, 255, 255);/*Gelos Charcoal*/
     color:rgb(0, 0, 0);
     border-color: rgb(66, 71, 84);
 }
+
+.form-select, .form-select:active,
+.form-select:hover, .form-select:empty,
+.form-select:focus {
+    color:rgb(0, 0, 0);
+    border-color: rgb(66, 71, 84);
+    max-width: 400px;
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    
+}
+
 
 
 /* Logo opacity */
@@ -518,6 +530,25 @@ footer .container-sm {
 
 div .card-body{
     margin-left: 20px;
+}
+
+  /*
+********************************
+         Edit book
+********************************
+*/
+
+#bookdetails .container-text{ 
+    margin: 10px;
+}
+
+#bookdetails .form-select{ 
+    max-width: fit-content;
+}
+
+#bookdetails .img-fluid{ 
+
+    object-fit: cover;
 }
 
 
