@@ -23,6 +23,7 @@ Any errors are to be reported as errors so that corrections can be made. A new u
 -->
 
 <?php
+include_once("src/inc/config.php");
 include_once("src/inc/header.inc.php");
 ?>
 
@@ -31,7 +32,8 @@ include_once("src/inc/header.inc.php");
     <section class="container-form col bd-content ps-lg-2">
 
         <h1>Sign Up</h1><br><br>
-        <form class="col align-self-center" action="#" method="post">
+        <!-- named as signup to -->
+        <form class="col align-self-center" name="signup" action="#" method="post">
             <div class="row mb-3">
                 <div class="col align-self-center">
                     <label for="firstname" class="form-label">First Name</label>
@@ -51,7 +53,7 @@ include_once("src/inc/header.inc.php");
             <div class="row mb-3">
                 <label for="email" class="form-label">Email</label>
                 <div class="col-sm-12">
-                    <input type="email" class="form-control" id="email" name="email">
+                    <input type="text" class="form-control" id="email" name="email">
                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                 </div>
             </div>
@@ -59,7 +61,7 @@ include_once("src/inc/header.inc.php");
             <div class="row mb-3">
                 <label for="pass" class="form-label">Password</label>
                 <div class="col-sm-12">
-                    <input type="password" class="form-control" id="pass" name="pass">
+                    <input type="password" class="form-control" id="password" name="password">
                 </div>
             </div>
 
@@ -69,8 +71,49 @@ include_once("src/inc/header.inc.php");
                     <input type="password" class="form-control" id="retypePass" name="retypePass">
                 </div>
             </div>
+            <!-- normal user -->
+            <input style="display: none;" type="text" name="typename" value="User">
+            <input style="display: none;" type="number" name="type" value="2">
+            <input type="submit" name="submit" class="btn btn-primary btn-sm">
 
-            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+
+            <?php
+
+
+            if (isset($_POST['submit'])) {
+
+                //check duplicates for email 
+                $count = 0;
+                $sql = "SELECT email FROM `user`";
+                $res = mysqli_query($db, $sql);
+
+                while ($row = mysqli_fetch_assoc($result)) {
+                    if ($row['email'] == $_POST['email']) {
+                        $count = $count + 1;
+                    }
+                }
+                if ($count = 0)
+
+                    //if no duplicates found, user can register
+                    mysqli_query($db, "INSERT INTO `USER` (`firstname`, `lastname`, `email`, `password`, `typename`, `type`) 
+                 VALUES('$_POST[firstname]', '$_POST[lastname]','$_POST[email]','$_POST[password]',
+                 '$_POST[typename]','$_POST[type]');");
+            ?>
+                <script type="text/javascript">
+                    alert("Registration Successfull");
+                </script>
+            <?php
+            }
+            // if duplicate is found
+            else {
+            ?>
+                <script type="text/javascript">
+                    alert("The email already exist.");
+                </script>
+            <?php
+            }
+
+            ?>
 
 
         </form>

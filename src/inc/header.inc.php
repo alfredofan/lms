@@ -89,13 +89,9 @@
 
 
     </nav>
-    <script>
-        $('.navbar-collapse a').click(function() {
-            $(".navbar-collapse").collapse('hide');
-        });
-    </script>
-    <br>
-    <hr>
+
+
+
     <!-- 
 1.	Sign-up
 2.	Log-in
