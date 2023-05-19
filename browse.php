@@ -10,18 +10,18 @@ include_once("src/inc/header.inc.php");
 
 
 
-<div class="card bg-dark text-white ">
-    <img src="img\bannerLMSbw_optimized.jpg" class="img-fluid" alt="books">
+<div class="card bg-dark text-white " name="heroimg" id="heroimg">
+    <img src="img\bannerLMSbw_optimized.jpg" class="img-fluid" alt="books" style="padding-top: 50px ; "> <!-- padding to get more min-hight -->
     <div class="card-img-overlay">
         <!-- <h2>This is the main content</h2>
         <h5 class="card-title">Card title</h5>
         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
         <p class="card-text">Last updated 3 mins ago</p> -->
 
-        <form class="d-flex justify-content-center align-items-center" action="">
+        <form class="d-flex justify-content-center align-items-center" action="" name="searchbox" id="searchbox">
             <div class="col-4 p-1 bg-light rounded rounded-pill shadow-sm mb-4">
-                <div class="input-group">
-                    <input type="search" placeholder="Search Book" aria-describedby="button-addon1" class="form-control border-0 bg-light">
+                <div class="input-group d-flex justify-content-center align-items-center">
+                    <input type="search" placeholder="Search Book" aria-describedby="button-addon1" class="form-control border-0 bg-light" style="margin: 0px; padding: 0px;">
                     <div class="input-group-append">
                         <button id="button-addon1" type="submit" class="btn btn-link text-primary">
                             <i class="fa fa-search"></i>

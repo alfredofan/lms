@@ -436,7 +436,7 @@ footer .container-sm {
 */
 
 
-.container-card{
+/* .container-card{
     max-width: max-content;
     min-height: 20vh;
     margin-bottom: 20px ;
@@ -447,16 +447,18 @@ footer .container-sm {
     min-height: 10vh;
     
 
-}
+} */
 
 .card-img-overlay{
     display: flex;
     align-items: center;
     justify-content: center;
-    /*padding: 100px 100px;*/
+    margin-top: 66px ; /* 50px navbar + 16 px default from card-img-overlay */
    
-
 }
+
+
+
 /*
 *
 * ==========================================
@@ -482,15 +484,71 @@ footer .container-sm {
     color: #aaa;
     font-style: italic;
   }
-  
-  div .col-4{
+ 
+
+  #heroimg div .col-4{
     
     min-width: 300px;
-    max-width: 450px;
+    max-width: 445px; /* + 5px left padding magnifying glasses total 450px */
     position: absolute;
     z-index: 0; /* make overlay all content but navbar */
+
   }
 
+  
+
+
+  /* make itens not to close from pill searchox inputgroup edges */
+  #searchbox .input-group{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  button#button-addon1.btn.btn-link.text-primary {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 5px;
+    margin: 0px;
+}
+
+
+  /*make searchbbox smaller for mobile devices, it looked too small on 600px  */
+  @media only screen and (max-width: 500px) 
+  {
+  
+    #heroimg div .col-4{
+        max-width: 300px;
+        min-width: 200px;
+        
+        max-height: 30px;
+        min-height: 25px;
+
+        /* align items verticaly inside the pill */
+        display: inline-flex;
+        align-content: center;
+
+      }
+
+      /* make magnifying glass and search placeholder fit the searchbox */
+    button#button-addon1.btn.btn-link.text-primary {
+        padding: 0px;
+        margin: 0px;
+    }  
+    #searchbox input.form-control.border-0.bg-light  {
+        max-height: 22.5px;
+        
+        max-width: 250px;
+        /* margin-left: 2.5px;
+        margin-right: 2.5px; */
+    }   
+    
+    #searchbox div.input-group{
+        display: inline-flex;
+        align-content: center;
+    }
+    }
+  
 
 /*
 *
@@ -531,6 +589,9 @@ footer .container-sm {
 div .card-body{
     margin-left: 20px;
 }
+
+
+
 
   /*
 ********************************
