@@ -16,7 +16,7 @@ System is to utilize a single sign-on location for all users (members and admins
 include_once("src/inc/header.inc.php");
 ?>
 
-<div class="container-lg d-flex justify-content-center align-items-center">
+<div class="container-lg d-flex justify-content-center align-items-center" style="margin-top: 75px;">
     <!--     Create Login form here and on success redirect user to the dashboard    -->
     <section class="container-form col bd-content ps-lg-2">
 
