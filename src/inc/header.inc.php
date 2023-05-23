@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,19 +76,35 @@
 
                 <!--"d-flex was used to get the search box and icon inline"-->
                 <div class="d-flex gap-2 ">
-                    <a href="login.php" class="btn btn-outline-secondary btn-sm" type="button">Log in</a>
-                    <a href="signup.php" class="btn btn-primary btn-sm" type="button">Sign up</a>
+
+                    <?php
+                    // if user is logged in there will be logout option only
+                    if (isset($_SESSION['login_user'])) { ?>
+
+                        <a href="logout.php" class="btn btn-outline-secondary btn-sm" type="button">Log out</a>
                 </div>
-                <!--choosed to customise the bootstrap template for aesthatics-->
+
+            <?php
+                        // if not user is not logged in there will be log in and sign in options
+                    } else {
+            ?>
+
+                <a href="login.php" class="btn btn-outline-secondary btn-sm" type="button">Log in</a>
+                <a href="signup.php" class="btn btn-primary btn-sm" type="button">Sign up</a>
+            </div>
+        <?php
+                    }
+        ?>
+        <!--choosed to customise the bootstrap template for aesthatics-->
 
 
 
-                <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <button class="btn btn-outline-secondary btn-sm me-md-2" type="button">Log in</button>
                 <button class="btn btn-primary btn-sm" type="button">Sign up</button>
             </div> -->
 
-            </div>
+        </div>
         </div>
 
 

@@ -15,6 +15,8 @@ System is to utilize a single sign-on location for all users (members and admins
 <?php
 include_once("src/inc/config.php");
 include_once("src/inc/header.inc.php");
+// start user session
+
 ?>
 
 <div class="container-lg d-flex justify-content-center align-items-center" style="margin-top: 75px;">
@@ -80,6 +82,9 @@ include_once("src/inc/header.inc.php");
 
             } else {
                 // successfull login
+
+                // create session uder username
+                $_SESSION['login_user'] = $_POST['username'];
             ?>
                 <script type="text/javascript">
                     window.location = "browse.php"
