@@ -8,16 +8,17 @@ html {
 }
 
 body {
+    position: relative;
+    overflow: visible;
     font-family: Arial, Helvetica, sans-serif;
     padding: 0px;
     margin: 0px;  
-    /* get rid of the horizontal scroll for aesthetics */
-    min-height: 100vh;
-    display: flex;   
+    /* get rid of the horizontal scroll for aesthetics */ 
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    z-index: -10;
 
     
 }
@@ -33,9 +34,9 @@ body {
         Navigation bar 
 =============================*/
 .navbar {
-    overflow: hidden;
+    overflow: visible;
     background-color: white;
-    position: fixed; /*to fix the menu*/
+    position: relative; /*to fix the menu*/
     width: 100%; /*to position the menu 100% in the whole screen*/
     padding: 7.5px;
     font-size: 16px;
@@ -47,14 +48,40 @@ body {
 }
 
 nav div .container-xl{
-    position: absolute;
-    z-index: -1;  /* make overlay all content  */
+    position: relative;
+    overflow:visible;
+    z-index: -1;  /* make overlay all content but the dropdown inside */
 
 }
 
+#navbarDropdown{
+    height:100%;
+      width:100%;
+    overflow: visible;
+    display:block;
+    position: relative;
+    z-index: 9999;  /* make overlay all content  */
+
+}
+
+ul.dropdown-menu, a.dropdown-toggle, li.nav-item, a.dropdown-item, 
+ul.dropdown-menu:active, a.dropdown-toggle:active, li.nav-item:active,
+a.dropdown-item:active {
+    height:100%;
+      width:100%;
+    overflow: visible;
+    display:block;
+    position: relative;
+    z-index: 9999;  /* make overlay all content  */
+
+}
+
+
+
     /* close navbar when clicking outside */
     .close-navbar-toggler{
-      position:absolute;
+      position: relative;
+      overflow:visible;
       top:0;
       left:0;
       height:100%;
@@ -76,6 +103,7 @@ li.nav-item, a.nav-link.zone, form.d-flex{
     padding-bottom: 0px;
     margin-bottom: 0px;
     color: black;
+    
 }
 a.nav-link.zone:hover, a.nav-link.zone:active{
     opacity: .8;
@@ -454,6 +482,9 @@ footer .container-sm {
     align-items: center;
     justify-content: center;
     margin-top: 66px ; /* 50px navbar + 16 px default from card-img-overlay */
+    position: relative;
+    overflow: inherit;
+    z-index: -10;
    
 }
 
@@ -622,9 +653,11 @@ div .card-body{
 }
 
 #bookdetails .img-fluid{ 
-
+    
     object-fit: cover;
 }
+
+
 
 
   /*

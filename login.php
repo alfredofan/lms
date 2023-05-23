@@ -85,6 +85,7 @@ include_once("src/inc/header.inc.php");
 
                 // create session uder username
                 $_SESSION['login_user'] = $_POST['username'];
+                $_SESSION['login_user_name'] = $_POST['firstname'];
             ?>
                 <script type="text/javascript">
                     window.location = "browse.php"

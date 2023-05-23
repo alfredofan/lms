@@ -75,36 +75,60 @@ session_start();
                 </ul>
 
                 <!--"d-flex was used to get the search box and icon inline"-->
-                <div class="d-flex gap-2 ">
+                <ul class="navbar-nav  mb-2 mb-lg-0 d-flex gap-2 ">
 
                     <?php
                     // if user is logged in there will be logout option only
-                    if (isset($_SESSION['login_user'])) { ?>
+                    if (isset($_SESSION['login_user'])) {
+                        //After successful login, session is used to retrieve details(id,email and etc.) from the table.
+                        $query = mysqli_query($db, "SELECT * FROM user;");
+                        while ($row = mysqli_fetch_array($query)) {
 
-                        <a href="logout.php" class="btn btn-outline-secondary btn-sm" type="button">Log out</a>
-                </div>
+                            $fistname = $row['firstname'];
+                            //echo $row['firstname'];
+                        }
+                    ?>
+                        <li class="nav-item">
+                            <a class="nav-link zone " href="dashboard.php" role="button">
+                                <?php
+                                echo "Hello, " . $fistname;
+                                ?>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+
+                            <a href="logout.php" class="btn btn-primary btn-sm" type="button">Log out</a>
+                        </li>
+
+
+
+
+                </ul>
 
             <?php
+
+
+
                         // if not user is not logged in there will be log in and sign in options
                     } else {
             ?>
 
                 <a href="login.php" class="btn btn-outline-secondary btn-sm" type="button">Log in</a>
                 <a href="signup.php" class="btn btn-primary btn-sm" type="button">Sign up</a>
-            </div>
-        <?php
+                </ul>
+            <?php
                     }
-        ?>
-        <!--choosed to customise the bootstrap template for aesthatics-->
+            ?>
+            <!--choosed to customise the bootstrap template for aesthatics-->
 
 
 
-        <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <button class="btn btn-outline-secondary btn-sm me-md-2" type="button">Log in</button>
                 <button class="btn btn-primary btn-sm" type="button">Sign up</button>
             </div> -->
 
-        </div>
+            </div>
         </div>
 
 

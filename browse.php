@@ -94,7 +94,7 @@ include_once("src/inc/header.inc.php");
 
                                             <?php
 
-                                            if ($row2["status"] == "Onloan") {
+                                            if ($row2["status"] == "On loan") {
 
                                             ?>
                                                 <p style="color:firebrick;"><small>
