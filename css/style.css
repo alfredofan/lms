@@ -36,7 +36,7 @@ body {
 .navbar {
     overflow: visible;
     background-color: white;
-    position: relative; /*to fix the menu*/
+    position: fixed relative; /*to fix the menu*/
     width: 100%; /*to position the menu 100% in the whole screen*/
     padding: 7.5px;
     font-size: 16px;
@@ -55,8 +55,6 @@ nav div .container-xl{
 }
 
 #navbarDropdown{
-    height:100%;
-      width:100%;
     overflow: visible;
     display:block;
     position: relative;
@@ -64,11 +62,7 @@ nav div .container-xl{
 
 }
 
-ul.dropdown-menu, a.dropdown-toggle, li.nav-item, a.dropdown-item, 
-ul.dropdown-menu:active, a.dropdown-toggle:active, li.nav-item:active,
-a.dropdown-item:active {
-    height:100%;
-      width:100%;
+.ul.dropdown-menu{
     overflow: visible;
     display:block;
     position: relative;
@@ -103,7 +97,6 @@ li.nav-item, a.nav-link.zone, form.d-flex{
     padding-bottom: 0px;
     margin-bottom: 0px;
     color: black;
-    
 }
 a.nav-link.zone:hover, a.nav-link.zone:active{
     opacity: .8;
@@ -481,10 +474,8 @@ footer .container-sm {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 66px ; /* 50px navbar + 16 px default from card-img-overlay */
-    position: relative;
-    overflow: inherit;
-    z-index: -10;
+    margin-top: 16px ; 
+    /* 50px navbar + 16 px default from card-img-overlay */
    
 }
 

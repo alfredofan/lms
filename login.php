@@ -83,9 +83,11 @@ include_once("src/inc/header.inc.php");
             } else {
                 // successfull login
 
-                // create session uder username
+                // create session variale under username
                 $_SESSION['login_user'] = $_POST['username'];
-                $_SESSION['login_user_name'] = $_POST['firstname'];
+                // Login time is stored in a session variable
+                $_SESSION["login_time_stamp"] = time();
+                header("location:index.php");
             ?>
                 <script type="text/javascript">
                     window.location = "browse.php"
