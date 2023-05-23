@@ -1,8 +1,9 @@
 <?php
+include_once("src/inc/config.php");
 include_once("src/inc/header.inc.php");
 ?>
 
-<div class="container-sm d-flex justify-content-center" id="bookdetails">
+<div class="container-sm d-flex justify-content-center" id="bookdetails" style="margin-top:75px">
 
     <div class="container-text" role="grid" aria-label="Text Grid">
         <div class=" col align-content-start" role="grid" aria-label="Text Grid">

@@ -1,12 +1,12 @@
 <?php
+include_once("src/inc/config.php");
 include_once("src/inc/header.inc.php");
-
 ?>
 
 <!-- <h2>This is the main content</h2> -->
 
 
-<!-- Cover!!! -->
+<!-- Cover / search bar -->
 
 
 
@@ -41,81 +41,90 @@ include_once("src/inc/header.inc.php");
 
 
 <!-- Library Grid -->
-<div class="container-lg d-flex justify-content-center align-items-center">
+<div class='container-lg d-flex justify-content-center align-items-center'>
+
 
     <div class="row  row-cols-md-3 g-4">
-        <div class="col d-flex justify-content-center">
-            <div class="row  container-card " style="width: 18rem; padding:10px">
-                <img src="img\book_1.png" class="" style="padding:20px;" alt="...">
-                <div class="card-body ">
-                    <h5 class="card-title">Great Expectations</h5>
-                    <h7 class="card-subtitle mb-2 text-muted">Author &#8231; Charles Dickens</h7>
-                    <p class="card-text" style="margin-bottom: 0px;"><small>Details &#8231; Macmillan Collectors Library</small></p>
-                    <p style="color:gray;"><small>Available</small></p>
-                    <a href="signup.php" class="btn btn-primary btn-sm" type="button">Borrow</a>
-                    <a href="book.php" class="btn btn-outline-secondary btn-sm" type="button">Edit</a>
+
+        <?php
+        $result = mysqli_query($db, "SELECT * FROM `book`;");
+        while ($row = mysqli_fetch_array($result)) {
+        ?>
+            <div class="col d-flex justify-content-center">
+                <div class="row  container-card " style="width: 18rem; padding:10px">
+                    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row["image"]); ?>" class="" style="padding:20px;" alt="...">
+                    <div class="card-body ">
+                        <h5 class="card-title"><?php echo $row["book_title"]; ?> </h5>
+                        <h7 class="card-subtitle mb-2 text-muted">Author &#8231; <?php echo $row["author"]; ?></h7>
+                        <p class="card-text" style="margin-bottom: 0px;"><small>Details &#8231; <?php echo $row["publisher"]; ?></small></p>
+
+                        <?php
+                        // in order to display book status I had to compare the book_id column from tables `book` and `book_status` 
+                        $result2 = mysqli_query($db, "SELECT * FROM `book_status`;");
+                        $result3 = mysqli_query($db, "SELECT * FROM `book`;");
+                        if (mysqli_num_rows($result3) > 0) {
+                            $row2_count = mysqli_num_rows($result2);
+                            $row3_count = mysqli_num_rows($result3);
+                            // find amount of remaining rows to make countdown
+                            $remaining_rows = min($row2_count, $row3_count);
+
+                            //loop countdown comparing book_id column from book_status until get match with current iteration row from parent while  
+                            while ($remaining_rows-- > 0) {
+                                $row2 = mysqli_fetch_assoc($result2);
+                                // $row3 = mysqli_fetch_assoc($result3);
+                                if ($row2["book_id"] == $row["book_id"]) {
+                                    // selecting color for each status
+                                    if ($row2["status"] == "Available") {
+
+                        ?>
+                                        <p style="color:gray;"><small>
+                                                <?php
+                                                echo $row2["status"]; ?>
+                                            </small></p>
+
+                                        <?php
+
+                                        if ($row2["status"] == "Deleted") {
+
+                                        ?>
+                                            <p style="color:gray;"><small>
+                                                    <?php
+                                                    echo $row2["status"]; ?>
+                                                </small></p>
+
+                                            <?php
+
+                                            if ($row2["status"] == "Onloan") {
+
+                                            ?>
+                                                <p style="color:firebrick;"><small>
+                                                        <?php
+                                                        echo $row2["status"]; ?>
+                                                    </small></p>
+
+                        <?php
+
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        ?>
+
+                        <a href="signup.php" class="btn btn-primary btn-sm" type="button">Borrow</a>
+                        <a href="book.php" class="btn btn-outline-secondary btn-sm" type="button">Edit</a>
+
+
+                    </div>
                 </div>
+
             </div>
-        </div>
-
-        <div class="col d-flex justify-content-center">
-            <div class=" row  container-card" style="width: 18rem; padding:10px">
-                <img src="img\book_2.png" class="" style="padding:20px;" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">An Inconvenient Truth</h5>
-                    <h7 class="card-subtitle mb-2 text-muted">Author &#8231; Al Gore</h7>
-                    <p class="card-text" style="margin-bottom: 0px;"><small>Details &#8231; Penguin Books</small></p>
-                    <p style="color:crimson;"><small>Not Available</small></p>
-                    <a href="signup.php" class="btn btn-primary btn-sm" type="button">Borrow</a>
-                    <a href="book.php" class="btn btn-outline-secondary btn-sm" type="button">Edit</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col d-flex justify-content-center">
-            <div class="row  container-card " style="width: 18rem; padding:10px">
-                <img src="img\book_3.png" class="" style="padding:20px;" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Oxford Dictionary</h5>
-                    <h7 class="card-subtitle mb-2 text-muted">Author &#8231; Oxford Press</h7>
-                    <p class="card-text" style="margin-bottom: 0px;"><small>Details &#8231; Oxford Press</small></p>
-                    <p style="color:gray;"><small>Available</small></p>
-                    <a href="signup.php" class="btn btn-primary btn-sm" type="button">Borrow</a>
-                    <a href="book.php" class="btn btn-outline-secondary btn-sm" type="button">Edit</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col d-flex justify-content-center">
-            <div class="row  container-card " style="width: 18rem; padding:10px">
-                <img src="img\book_4.png" class="" style="padding:20px;" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Anna Karenina</h5>
-                    <h7 class="card-subtitle mb-2 text-muted">Author &#8231; Leo Tolstoy</h7>
-                    <p class="card-text" style="margin-bottom: 0px;"><small>Details &#8231; Star Publishing</small></p>
-                    <p style="color:gray;"><small>Available</small></p>
-                    <a href="signup.php" class="btn btn-primary btn-sm" type="button">Borrow</a>
-                    <a href="book.php" class="btn btn-outline-secondary btn-sm" type="button">Edit</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col d-flex justify-content-center">
-            <div class="row  container-card " style="width: 18rem; padding:10px">
-                <img src="img\book_5.png" class="" style="padding:20px;" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">The Tale of Genji</h5>
-                    <h7 class="card-subtitle mb-2 text-muted">Author &#8231; Murasaki Shikibu</h7>
-                    <p class="card-text" style="margin-bottom: 0px;"><small>Details &#8231; Kinokuniya</small></p>
-                    <p style="color:gray;"><small>Available</small></p>
-                    <a href="signup.php" class="btn btn-primary btn-sm" type="button">Borrow</a>
-                    <a href="book.php" class="btn btn-outline-secondary btn-sm" type="button">Edit</a>
-                </div>
-            </div>
-        </div>
-
-
+        <?php
+        }
+        ?>
     </div>
+
 </div>
 
 
