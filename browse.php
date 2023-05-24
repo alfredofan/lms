@@ -21,7 +21,7 @@ include_once("src/inc/header.inc.php");
         <form class="d-flex justify-content-center align-items-center" action="" name="searchbox" id="searchbox">
             <div class="col-4 p-1 bg-light rounded rounded-pill shadow-sm mb-4">
                 <div class="input-group d-flex justify-content-center align-items-center">
-                    <input type="search" placeholder="Search Book" aria-describedby="button-addon1" class="form-control border-0 bg-light" style="margin: 0px; padding: 0px;">
+                    <input type="search" name="search" id="search" placeholder="Search Book" aria-describedby="button-addon1" class="form-control border-0 bg-light" style="margin: 0px; padding: 0px;">
                     <div class="input-group-append">
                         <button id="button-addon1" type="submit" class="btn btn-link text-primary">
                             <i class="fa fa-search"></i>
@@ -37,29 +37,60 @@ include_once("src/inc/header.inc.php");
     </div>
 </div>
 
+<?php
 
+if (isset($_GET['search'])) {
+    $valueToSearch = $_GET['search'];
+    // search in all table columns
+    // using concat mysql function
+    $query = "SELECT * FROM book WHERE CONCAT(`book_title`, `author`, `publisher`, `language`, `category`, `book_id`) LIKE '%" . $valueToSearch . "%'";
+    $search_result = filterTable($query);
+} else {
+    $query = "SELECT * FROM book";
+    $search_result = filterTable($query);
+}
 
+// function to connect and execute the query
+function filterTable($query)
+{
+    include 'src/inc/config.php';
+    $filter_Result = mysqli_query($db, $query);
+    return $filter_Result;
+}
 
-<!-- Library Grid -->
-<div class='container-lg d-flex justify-content-center align-items-center'>
+if (mysqli_num_rows($search_result) == 0) {
+?>
+    <!--testing session variale -->
+    <!-- <script type="text/javascript">
+        alert('<?php //echo "value " . $search_result . " not found" 
+                ?>'); //checking input value in searchox
+    </script> -->
 
+<?php
+}
+?>
 
-    <div class="row  row-cols-md-3 g-4">
+<div class='container-lg d-flex justify-content-center align-items-start'>
+    <div class="row  inline-flex row-cols-md-3 g-4 justify-content-around">
 
         <?php
-        $result = mysqli_query($db, "SELECT * FROM `book`;");
-        while ($row = mysqli_fetch_array($result)) {
+
+        while ($row = mysqli_fetch_assoc($search_result)) {
+
+
         ?>
             <div class="col d-flex justify-content-center">
-                <div class="row  container-card " style="width: 18rem; padding:10px">
-                    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row["image"]); ?>" class="" style="padding:20px;" alt="...">
-                    <div class="card-body ">
+                <div class="row  container-card " style="max-width:240px; padding:10px; position:relative;">
+                    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row["image"]); ?>" class="" style="padding:10px; width:fit-content;" alt="...">
+                    <div class="card-body" style="margin-left: 10px; width:max-content ;position:relative;
+                        min-width:220px;
+                        " id="card-body">
                         <h5 class="card-title"><?php echo $row["book_title"]; ?> </h5>
                         <h7 class="card-subtitle mb-2 text-muted">Author &#8231; <?php echo $row["author"]; ?></h7>
                         <p class="card-text" style="margin-bottom: 0px;"><small>Details &#8231; <?php echo $row["publisher"]; ?></small></p>
 
                         <?php
-                        // in order to display book status I had to compare the book_id column from tables `book` and `book_status` 
+                        // in order to display book status I had to compare the book_id column from both tables `book` and `book_status` 
                         $result2 = mysqli_query($db, "SELECT * FROM `book_status`;");
                         $result3 = mysqli_query($db, "SELECT * FROM `book`;");
                         if (mysqli_num_rows($result3) > 0) {
@@ -122,11 +153,37 @@ include_once("src/inc/header.inc.php");
             </div>
         <?php
         }
+
         ?>
     </div>
 
 </div>
 
+<!--testing session variale -->
+<!-- <script type="text/javascript">
+    alert('<?php // echo $valueToSearch; 
+            ?>');
+</script> -->
+<?php
+
+//{
+//     $query = "SELECT * FROM user";
+//     $search_result = filterTable($query);
+// }
+
+//     $result = mysqli_query($db, "SELECT * FROM `book` 
+// WHERE `book_title` or `author` or `publisher` or `language`  `category` or `book_id` like '%$_POST[search]%'");
+
+//     if (mysqli_num_rows($q) == 0) {
+//         echo "Sorry, no book found. Try searching again.";
+//     } else {
+?>
+
+
+<?php
+// }
+// }
+?>
 
 <?php
 include_once("src/inc/footer.inc.php");

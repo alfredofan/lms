@@ -1,5 +1,25 @@
 <?php
+//Start a new session
 session_start();
+
+
+//Check the session start time is set or not
+if (!isset($_SESSION['start'])) {
+    //Set the session start time
+    $_SESSION['start'] = time();
+}
+
+//Check the session is expired or not
+if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 3600)) { //3600 is que equivalent of 2h in seconds.
+    //Unset the session variables
+    session_unset();
+    //Destroy the session
+    session_destroy();
+
+    echo '<script>alert("Session is expired.")</script>'; //testing session
+    header("location:index.php");
+} else
+    //echo '<script>alert("Current session exists.")</script>'; //testing session
 ?>
 
 <!DOCTYPE html>
@@ -70,37 +90,61 @@ session_start();
                         <a class="nav-link zone" href="index.html#section3">Edit</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link zone" href="index.html#section4">Logout</a>
+                        <a class="nav-link zone" href="admin_user_mngmt.php">Admin</a>
                     </li>
+
                 </ul>
 
                 <!--"d-flex was used to get the search box and icon inline"-->
                 <ul class="navbar-nav  mb-2 mb-lg-0 d-flex gap-2 ">
 
                     <?php
-                    // if user is logged in there will be logout option only
-                    if (isset($_SESSION['login_user'])) {
-                        //After successful login, session is used to retrieve details(id,email and etc.) from the table.
-                        $query = mysqli_query($db, "SELECT * FROM user;");
-                        while ($row = mysqli_fetch_array($query)) {
+                // if user is logged in there will be logout option only
+                if (isset($_SESSION['login_user'])) {
+                    //After successful login, session is used to retrieve details(id,email and etc.) from the table.
+                    $result = mysqli_query($db, "SELECT * FROM `user`WHERE email='$_SESSION[login_user]'");
+                    while ($row = mysqli_fetch_array($result)) {
 
-                            $fistname = $row['firstname'];
-                            //echo $row['firstname'];
-                        }
+                        $firstname = $row['firstname'];
+                        //echo $row['firstname'];
+
+
+
+
+                    }
                     ?>
-                        <li class="nav-item">
+                        <!-- Old logout and login session name -->
+                        <!-- <li class="nav-item">
                             <a class="nav-link zone " href="dashboard.php" role="button">
                                 <?php
-                                echo "Hello, " . $fistname;
+                                //echo "Hello, " . $firstname;
                                 ?>
                             </a>
                         </li>
                         <li class="nav-item">
 
                             <a href="logout.php" class="btn btn-primary btn-sm" type="button">Log out</a>
+                        </li> -->
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link zone dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Hello, <?php echo $firstname; ?>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li class="nav-item">
+                                    <a class="nav-link zone mb-2 gap-2" href="dashboard.php">Dashboard</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link zone mb-2 gap-2" href="#">Another action</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li class="nav-item">
+                                    <a href="logout.php" class="btn btn-primary btn-sm" type="button">Log out</a>
+                                </li>
+                            </ul>
                         </li>
-
-
 
 
                 </ul>
@@ -109,15 +153,15 @@ session_start();
 
 
 
-                        // if not user is not logged in there will be log in and sign in options
-                    } else {
+                    // if not user is not logged in there will be log in and sign in options
+                } else {
             ?>
 
                 <a href="login.php" class="btn btn-outline-secondary btn-sm" type="button">Log in</a>
                 <a href="signup.php" class="btn btn-primary btn-sm" type="button">Sign up</a>
                 </ul>
             <?php
-                    }
+                }
             ?>
             <!--choosed to customise the bootstrap template for aesthatics-->
 
