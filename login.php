@@ -50,8 +50,7 @@ include_once("src/inc/header.inc.php");
         //checking for login credential / matching 
         if (isset($_POST['submit'])) {
             $count = 0;
-            $result = mysqli_query($db, "SELECT * FROM `user`WHERE email='$_POST[username]' AND password='$_POST[password]';
-    ");
+            $result = mysqli_query($db, "SELECT * FROM `user`WHERE email='$_POST[username]' AND password='$_POST[password]';");
             $count = mysqli_num_rows($result);
 
             //if fail to login
@@ -86,7 +85,7 @@ include_once("src/inc/header.inc.php");
                 // create session variale under username
                 $_SESSION['login_user'] = $_POST['username'];
                 // Login time is stored in a session variable
-                $_SESSION["login_time_stamp"] = time();
+                $_SESSION['start'] = time(); // Taking now logged in time.
                 header("location:index.php");
             ?>
                 <script type="text/javascript">
