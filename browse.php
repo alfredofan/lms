@@ -115,42 +115,54 @@ if (mysqli_num_rows($search_result) == 0) {
                         ?>
                                         <p style="color:gray;"><small>
                                                 <?php
+                                                echo $row2["status"];
+                                                ?>
+                                            </small></p>
+
+
+                                    <?php
+                                    }
+                                    if ($row2["status"] == "Deleted") {
+
+                                    ?>
+                                        <p style="color:gray;"><small>
+                                                <?php
                                                 echo $row2["status"]; ?>
                                             </small></p>
 
-                                        <?php
 
-                                        if ($row2["status"] == "Deleted") {
+                                    <?php
+                                    }
+                                    if ($row2['status'] == "On loan") {
 
-                                        ?>
-                                            <p style="color:gray;"><small>
-                                                    <?php
-                                                    echo $row2["status"]; ?>
-                                                </small></p>
+                                    ?>
+                                        <p style="color:firebrick;"><small>
+                                                <?php
+                                                echo $row2["status"]; ?>
+                                            </small></p>
 
-                                            <?php
 
-                                            if ($row2["status"] == "On loan") {
+                                    <?php
 
-                                            ?>
-                                                <p style="color:firebrick;"><small>
-                                                        <?php
-                                                        echo $row2["status"]; ?>
-                                                    </small></p>
 
+
+                                    }
+                                    // make button desale in case ook status is on loan or deleted
+                                    if ($row2['status'] == "On loan" || $row2["status"] == "Deleted") {
+                                    ?>
+                                        <a href="signup.php" class="btn btn-primary btn-sm disabled" type="button" aria-disabled="true">Borrow</a>
+                                    <?php
+
+                                    } else {
+                                    ?>
+                                        <a href="signup.php" class="btn btn-primary btn-sm" type="button">Borrow</a>
                         <?php
 
-                                            }
-                                        }
                                     }
                                 }
                             }
                         }
                         ?>
-
-                        <a href="signup.php" class="btn btn-primary btn-sm" type="button">Borrow</a>
-                        <!-- <a class="btn btn-outline-secondary btn-sm" type="submit" id="<?php //echo $row["book_id"]; 
-                                                                                            ?>" name="submit">Edit</button> -->
 
 
                         <!-- subject of test -->

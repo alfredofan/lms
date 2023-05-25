@@ -63,19 +63,47 @@ if (isset($_GET['edit'])) {
                     <p style="padding-top: 30px ;font-size: clamp(15px, 2vw, 22px); text-align:justify">
                         <!-- space reserved for book synopsis -->
                     </p>
-                    <select class="form-select" name="status" id="status" aria-label="Default select example">
-                        <option selected><?php echo $row2['status'] ?? ''; ?></option>
-                        <option value="1">Available</option>
-                        <option value="2">Not Available</option>
-                        <option value="3">On loan</option>
-                        <option value="4">Deleted</option>
-                    </select>
+                    <form class="col align-self-center" action="#" method="post" enctype="multipart/form-data">
+                        <select class="form-select mb-3" name="status" id="status" aria-label="Default select example">
+                            <option selected><?php echo $row2['status'] ?? ''; ?></option>
+                            <option value="Available">Available</option>
+                            <option value="On loan">On loan</option>
+                            <option value="Deleted">Deleted</option>
+                        </select>
+                        <button type="submit" name="submit_status" class="btn btn-primary btn-sm">Save</button>
+
+                    </form>
                 </div>
             </div>
         </div>
         <hr>
     </div>
 </div>
+
+<?php
+
+if (isset($_POST['submit_status'])) {
+    //get the book_id value from pressing button edit in any book from the browse.php page
+    $id = $_GET['edit'];
+    //table book_status columns 
+    $status = $_POST['status'];
+
+    //query for table book_status
+    $query1 = "UPDATE book_status SET `status`='$status' WHERE book_id='$id';";
+    if (mysqli_query($db, $query1)) {
+?>
+
+        <!--testing session variale -->
+        <script type="text/javascript">
+            alert("Saved Successfully.");
+            //reload page to get updated fields
+            window.location = "book.php?edit=<?php echo $row['book_id']; ?>";
+        </script>
+
+<?php
+    }
+}
+?>
 
 
 <div class="container-lg d-flex justify-content-center">
@@ -159,6 +187,11 @@ if (isset($_GET['edit'])) {
             //get the book_id value from pressing button edit in any book from the browse.php page
             $id = $_GET['edit'];
 
+
+
+
+
+
             // for image the function move_uploaded_file(filename, destination) note that image is the name given of the input tag
             move_uploaded_file($_FILES['image']['tmp_name'], "img/" . $_FILES['image']['name']);
 
@@ -178,7 +211,7 @@ if (isset($_GET['edit'])) {
             // }
 
 
-
+            //table book columns 
             $book_title = $_POST['book_title'];
             $author     = $_POST['author'];
             $publisher  = $_POST['publisher'];
@@ -188,9 +221,12 @@ if (isset($_GET['edit'])) {
             $image      = $_FILES['image']['name'];
 
 
+
+
             // check if image $_FILES is empty or not
             if ($image == "") {
                 // if empty, it edit all fields but image
+                //query for table book
                 $sql1 = "UPDATE book SET book_title='$book_title', author='$author', publisher='$publisher', 
                     `language`='$language', category='$category' WHERE book_id='$id';";
 
