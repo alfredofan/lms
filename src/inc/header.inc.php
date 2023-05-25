@@ -11,6 +11,7 @@ if (!isset($_SESSION['start'])) {
 
 //Check the session is expired or not
 if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 3600)) { //3600 is que equivalent of 2h in seconds.
+
     //Unset the session variables
     session_unset();
     //Destroy the session

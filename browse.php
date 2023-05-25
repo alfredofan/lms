@@ -81,7 +81,12 @@ if (mysqli_num_rows($search_result) == 0) {
         ?>
             <div class="col d-flex justify-content-center">
                 <div class="row  container-card " style="max-width:240px; padding:10px; position:relative;">
-                    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row["image"]); ?>" class="" style="padding:10px; width:fit-content;" alt="...">
+
+                    <?php
+                    echo '<img src="img/' . $row['image'] . '" class="img-fluid p-2" id="bookcover" alt="book cover" style="width:max-content;">';
+                    ?>
+                    <!-- <img src="data:image/jpg;charset=utf8;base64,<?php //echo base64_encode($row["image"]); 
+                                                                        ?>" class="" style="padding:10px; width:fit-content;" alt="..."> -->
                     <div class="card-body" style="margin-left: 10px; width:max-content ;position:relative;
                         min-width:220px;
                         " id="card-body">
@@ -144,8 +149,13 @@ if (mysqli_num_rows($search_result) == 0) {
                         ?>
 
                         <a href="signup.php" class="btn btn-primary btn-sm" type="button">Borrow</a>
-                        <a href="book.php" class="btn btn-outline-secondary btn-sm" type="button">Edit</a>
+                        <!-- <a class="btn btn-outline-secondary btn-sm" type="submit" id="<?php //echo $row["book_id"]; 
+                                                                                            ?>" name="submit">Edit</button> -->
 
+
+                        <!-- subject of test -->
+                        <!-- <a href="signup.php" class="btn btn-primary btn-sm" type="button">Borrow</a>-->
+                        <a href="book.php?edit=<?php echo $row['book_id']; ?>" class="btn btn-outline-secondary btn-sm">Edit</a>
 
                     </div>
                 </div>
