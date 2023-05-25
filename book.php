@@ -10,6 +10,9 @@ if (isset($_GET['edit'])) {
     $id = $_GET['edit'];
     // query copare values from the table book column book_id that match with button edit data
     $query = "SELECT * FROM book WHERE book_id= $id";
+
+    // query copare values from the table book_status column book_id that match with button edit data
+    $query2 = "SELECT * FROM book_status WHERE book_id= $id";
     // connect to db and add query
     $result = mysqli_query($db, $query);
     //fatch data
@@ -20,7 +23,17 @@ if (isset($_GET['edit'])) {
     $language   = $row['language'];
     $category  = $row['category'];
     $image     = $row['image'];
+
+    // connect to db and add query
+    $result2 = mysqli_query($db, $query2);
+    //fatch data from book_status table
+    $row2 = mysqli_fetch_assoc($result2);
+    $user_id  = $row2['user_id'];
+    $status = $row2['status'];
+    $applied_date = $row2['applied_date'];
 }
+
+
 ?>
 
 
@@ -50,8 +63,8 @@ if (isset($_GET['edit'])) {
                     <p style="padding-top: 30px ;font-size: clamp(15px, 2vw, 22px); text-align:justify">
                         <!-- space reserved for book synopsis -->
                     </p>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Select</option>
+                    <select class="form-select" name="status" id="status" aria-label="Default select example">
+                        <option selected><?php echo $row2['status'] ?? ''; ?></option>
                         <option value="1">Available</option>
                         <option value="2">Not Available</option>
                         <option value="3">On loan</option>
@@ -174,23 +187,48 @@ if (isset($_GET['edit'])) {
 
             $image      = $_FILES['image']['name'];
 
-            $sql1 = "UPDATE book SET book_title='$book_title', author='$author', publisher='$publisher', 
-                    `language`='$language', category='$category', `image`='$image' WHERE book_id='$id';";
 
-            if (mysqli_query($db, $sql1)) {
+            // check if image $_FILES is empty or not
+            if ($image == "") {
+                // if empty, it edit all fields but image
+                $sql1 = "UPDATE book SET book_title='$book_title', author='$author', publisher='$publisher', 
+                    `language`='$language', category='$category' WHERE book_id='$id';";
+
+                if (mysqli_query($db, $sql1)) {
         ?>
 
-                <!--testing session variale -->
-                <script type="text/javascript">
-                    alert("Saved Successfully.");
-                    //reload page to get updated fields
-                    window.location = "book.php?edit=<?php echo $row['book_id']; ?>";
-                </script>
+                    <!--testing session variale -->
+                    <script type="text/javascript">
+                        alert("Saved Successfully.");
+                        //reload page to get updated fields
+                        window.location = "book.php?edit=<?php echo $row['book_id']; ?>";
+                    </script>
+
+                <?php
+
+                }
+            } else {
+                // if not empty, it edit all fields including image
+
+
+                $sql2 = "UPDATE book SET book_title='$book_title', author='$author', publisher='$publisher', 
+                    `language`='$language', category='$category', `image`='$image' WHERE book_id='$id';";
+
+                if (mysqli_query($db, $sql2)) {
+                ?>
+
+                    <!--testing session variale -->
+                    <script type="text/javascript">
+                        alert("Saved Successfully.");
+                        //reload page to get updated fields
+                        window.location = "book.php?edit=<?php echo $row['book_id']; ?>";
+                    </script>
 
         <?php
+
+                }
             }
         }
-
         ?>
 
     </section>
