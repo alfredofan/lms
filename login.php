@@ -96,10 +96,14 @@ include_once("src/inc/header.inc.php");
 
                     // create session variale under username
                     $_SESSION['login_user'] = $_POST['username'];
+                    $_SESSION['login_user_firstname'] = $firstname;
                     $_SESSION['login_user_lastname'] = $lastname;
 
                     $_SESSION['login_image'] = $image_user;
                     $_SESSION['login_type'] = $typename;
+                    $_SESSION['image_user'] = $image_user;
+                    $_SESSION['image_id'] = $user_id;
+
 
                     // Login time is stored in a session variable
                     $_SESSION['start'] = time(); // Taking now logged in time.
