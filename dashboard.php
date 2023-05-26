@@ -35,7 +35,7 @@ include_once("src/inc/header.inc.php");
     ?>
 
 
-    <!-- Library Grid -->
+    <!-- Library list -->
     <div class="container-lg d-flex justify-content-center ">
 
 
@@ -73,27 +73,27 @@ include_once("src/inc/header.inc.php");
             while ($row = mysqli_fetch_array($result)) {
                 echo "<tr>";
                 echo "<td>"; ?> <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row["image"]); ?>" alt="" /> <?php echo "</td>";
-                                                                                                                                echo "<td>";
-                                                                                                                                echo $row["book_title"];
-                                                                                                                                echo "</td>";
-                                                                                                                                echo "<td>";
-                                                                                                                                echo $row["author"];
-                                                                                                                                echo "</td>";
-                                                                                                                                echo "<td>";
-                                                                                                                                echo $row["publisher"];
-                                                                                                                                echo "</td>";
-                                                                                                                                echo "<td>";
-                                                                                                                                echo $row["language"];
-                                                                                                                                echo "</td>";
-                                                                                                                                echo "<td>";
-                                                                                                                                echo $row["category"];
-                                                                                                                                echo "</td>";
-                                                                                                                                echo "</tr>";
-                                                                                                                            }
+                                                                                                                                    echo "<td>";
+                                                                                                                                    echo $row["book_title"];
+                                                                                                                                    echo "</td>";
+                                                                                                                                    echo "<td>";
+                                                                                                                                    echo $row["author"];
+                                                                                                                                    echo "</td>";
+                                                                                                                                    echo "<td>";
+                                                                                                                                    echo $row["publisher"];
+                                                                                                                                    echo "</td>";
+                                                                                                                                    echo "<td>";
+                                                                                                                                    echo $row["language"];
+                                                                                                                                    echo "</td>";
+                                                                                                                                    echo "<td>";
+                                                                                                                                    echo $row["category"];
+                                                                                                                                    echo "</td>";
+                                                                                                                                    echo "</tr>";
+                                                                                                                                }
 
-                                                                                                                            echo "</table>";
+                                                                                                                                echo "</table>";
 
-                                                                                                                                ?>
+                                                                                                                                    ?>
 
         </div>
     </div>
