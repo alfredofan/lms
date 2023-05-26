@@ -252,6 +252,19 @@ footer{
     a img.logo-center {
       display: none;
     }
+
+
+    #profile-details{
+        display: none!important;
+        width: 0px;
+        height: 0px;
+    }
+
+/* hide nav colapse dropdown profile photo */
+#profile-photo-dropdown-navbar{
+    display: none;
+}
+
   }
 
 
@@ -290,11 +303,20 @@ nav .logo-start{
   
 }
 
-/* hide dropdown profile photo */
-#profile-photo-dropdown{
+#dropdown-navbar-group, #dropdown-button{
     display: none;
 }
 
+
+/* enlarge profile photo from navbar */
+#profile-photo-nav{
+    display: none;
+}
+
+/* hide some items from the navbar to reorder when colapse */
+#navbar-links-admin, #navbar-links-browse, #navbar-links-return, #navbar-links-edit{
+    display: none;
+}
 
 nav .a .d-md-block, .d-none, .navbar-logo{
     padding: 0;
@@ -800,8 +822,19 @@ overlay for navbar (not in user)
     border-radius: 50%;
 }
 
+/* profile photo from navar */
+#profile-photo-dropdown-navbar{
+    width:50px;
+    height:50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
   /* hide arrow from dropdown-menu bootstrap class */
 a#navbarDropdown.nav-link.zone.dropdown-toggle::after{
+    display: none;
+}
+a#dropdown-navbar-group.nav-link.zone.dropdown-toggle::after{
     display: none;
 }
   
