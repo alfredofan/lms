@@ -62,7 +62,7 @@ if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 3600)) { //3600 
             </a>
 
 
-            <button class="navbar-toggler collapsed d-flex d-lg-none flex-column justify-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler collapsed d-flex d-lg-none flex-column justify-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
                 <span class="toggler-icon top-line"></span><!--lines from the humburger menu-->
                 <span class="toggler-icon middle-line"></span>
@@ -70,7 +70,7 @@ if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 3600)) { //3600 
             </button>
 
 
-            <div class="collapse navbar-collapse justify-content-between" data-bs-toggle="collapse" data-bs-toggle=".nav-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse justify-content-between" data-toggle="collapse" data-target=".nav-collapse" id="navbarSupportedContent">
 
 
                 <a class="navbar-logo d-none d-md-block d-flex justify-content-start" href="index.php">
@@ -107,6 +107,11 @@ if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 3600)) { //3600 
                     while ($row = mysqli_fetch_array($result)) {
 
                         $firstname = $row['firstname'];
+                        $lastname    = $row['lastname'];
+                        $email   = $row['email'];
+                        $type  = $row['type'];
+                        $typename     = $row['typename'];
+                        $user_id     = $row['user_id'];
                         //echo $row['firstname'];
 
 
@@ -127,11 +132,30 @@ if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 3600)) { //3600 
                             <a href="logout.php" class="btn btn-primary btn-sm" type="button">Log out</a>
                         </li> -->
 
+
+
                         <li class="nav-item dropdown">
                             <a class="nav-link zone dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Hello, <?php echo $firstname; ?>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <!-- <h4 style="font-size: clamp(22px, 3vw, 45px);">Details</h4> -->
+
+                                <!-- Displaying Data Read From Database -->
+                                <li class="nav-item" style="margin-bottom: 0px;">
+                                    <a class="text-left nav-link zone " style=" text-decoration: none; font-weight:200; margin-bottom: 0px; margin-top: 0px;"> <small><?php echo $email; ?></small></a>
+                                </li>
+
+                                <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px;">
+                                    <a class="text-left nav-link  zone " style=" text-decoration: none; font-weight:200; margin-top: 0px; margin-bottom: 0px;"> <small>User type: <?php echo $typename; ?></small> </a>
+                                </li>
+
+                                <li class="nav-item" style="margin-top: 0px;">
+                                    <a class="text-left nav-link  zone mb-2 gap-2" style=" text-decoration: none; font-weight:200; margin-top: 0px;"> <small>User ID: <?php echo $user_id; ?></small> </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link zone mb-2 gap-2" href="dashboard.php">Dashboard</a>
                                 </li>
@@ -157,9 +181,12 @@ if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 3600)) { //3600 
                     // if not user is not logged in there will be log in and sign in options
                 } else {
             ?>
-
-                <a href="login.php" class="btn btn-outline-secondary btn-sm" type="button">Log in</a>
-                <a href="signup.php" class="btn btn-primary btn-sm" type="button">Sign up</a>
+                <li class="nav-item">
+                    <a href="login.php" class="btn btn-outline-secondary btn-sm" type="button">Log in</a>
+                </li>
+                <li class="nav-item">
+                    <a href="signup.php" class="btn btn-primary btn-sm" type="button">Sign up</a>
+                </li>
                 </ul>
             <?php
                 }

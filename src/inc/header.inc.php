@@ -90,9 +90,24 @@ if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 3600)) { //3600 
                     <li class="nav-item">
                         <a class="nav-link zone" href="index.html#section3">Edit</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link zone" href="admin_user_mngmt.php">Admin</a>
-                    </li>
+
+
+                    <!--testing session variale -->
+                    <!-- <script type="text/javascript">
+                        alert('<?php //echo $_SESSION['login_type'];
+                                ?>');
+                    </script>-->
+
+
+                    <?php
+                    if (isset($_SESSION['login_user']) and $_SESSION['login_type'] == 'Administrator') {
+                    ?>
+                        <li class="nav-item">
+                            <a class="nav-link zone" href="admin_user_mngmt.php">Admin</a>
+                        </li>
+                    <?php
+                    }
+                    ?>
 
                 </ul>
 
@@ -100,24 +115,26 @@ if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 3600)) { //3600 
                 <ul class="navbar-nav  mb-2 mb-lg-0 d-flex gap-2 ">
 
                     <?php
-                // if user is logged in there will be logout option only
-                if (isset($_SESSION['login_user'])) {
-                    //After successful login, session is used to retrieve details(id,email and etc.) from the table.
-                    $result = mysqli_query($db, "SELECT * FROM `user`WHERE email='$_SESSION[login_user]'");
-                    while ($row = mysqli_fetch_array($result)) {
+                    // if user is logged in there will be logout option only
+                    if (isset($_SESSION['login_user'])) {
+                        //After successful login, session is used to retrieve details(id,email and etc.) from the table.
+                        $result = mysqli_query($db, "SELECT * FROM `user`WHERE email='$_SESSION[login_user]'");
+                        while ($row = mysqli_fetch_array($result)) {
 
-                        $firstname = $row['firstname'];
-                        $lastname    = $row['lastname'];
-                        $email   = $row['email'];
-                        $type  = $row['type'];
-                        $typename     = $row['typename'];
-                        $user_id     = $row['user_id'];
-                        //echo $row['firstname'];
+                            $firstname = $row['firstname'];
+                            $lastname    = $row['lastname'];
+                            $email   = $row['email'];
+                            $type  = $row['type'];
+                            $typename     = $row['typename'];
+                            $user_id     = $row['user_id'];
+                            $user_image = $row['image'];
+
+                            //echo $row['firstname'];
 
 
 
 
-                    }
+                        }
                     ?>
                         <!-- Old logout and login session name -->
                         <!-- <li class="nav-item">
@@ -134,30 +151,52 @@ if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 3600)) { //3600 
 
 
 
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown ">
                             <a class="nav-link zone dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Hello, <?php echo $firstname; ?>
+                                <!-- Hello, <?php //echo $firstname; 
+                                            ?> -->
+                                <?php
+                                echo '<img src="img/user_img/' . $user_image . '" class="img-fluid " id="profile-photo-nav" alt="profile photo" style="">';
+                                ?>
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown" id="dropdown-button">
                                 <!-- <h4 style="font-size: clamp(22px, 3vw, 45px);">Details</h4> -->
 
                                 <!-- Displaying Data Read From Database -->
-                                <li class="nav-item" style="margin-bottom: 0px;">
-                                    <a class="text-left nav-link zone " style=" text-decoration: none; font-weight:200; margin-bottom: 0px; margin-top: 0px;"> <small><?php echo $email; ?></small></a>
+
+
+
+
+
+                                <li class="container-text aling-content-center" role="grid" aria-label="Text Grid" style="margin-top:0px">
+                                    <div class=" col align-content-start justify-content-center" role="grid" aria-label="Text Grid" style="padding:16px">
+
+                                        <div class="row d-flex flex-row container-text justify-content-center" role="row" style="width:fit-content; margin-top:0px">
+                                            <div class="col-12 col-md-4 d-flex justify-content-center align-items-start" role="gridcell" style="width:fit-content">
+                                                <?php
+                                                echo '<img src="img/user_img/' . $user_image . '" class="img-fluid " id="profile-photo-dropdown" alt="profile photo" style="">';
+                                                ?>
+                                            </div>
+                                            <div class="col-12 col-md-6 " role="gridcell" style="width:fit-content;padding-top:0px;"> <!--alternative for "flex row reverse" in this case would be "order-md-last" -->
+                                                <h7 class="d-flex flex-row align-items-center justify-content-start" style="font-weight:bold ;padding-top:0px; ">
+                                                    <?php echo $firstname . ' ' . $lastname; ?>
+                                                </h7>
+                                                <h7 class="card-subtitle mb-2 text-muted" style="margin-bottom:20px;"><?php echo $email ?></h7>
+
+
+                                                <a href="user.php?edit=<?php echo $user_id; ?>" class="nav-link zone  " style="padding-left: 0px; padding-top: 10px; margin: 0px;">Manage your account</a>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </li>
 
-                                <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px;">
-                                    <a class="text-left nav-link  zone " style=" text-decoration: none; font-weight:200; margin-top: 0px; margin-bottom: 0px;"> <small>User type: <?php echo $typename; ?></small> </a>
-                                </li>
-
-                                <li class="nav-item" style="margin-top: 0px;">
-                                    <a class="text-left nav-link  zone mb-2 gap-2" style=" text-decoration: none; font-weight:200; margin-top: 0px;"> <small>User ID: <?php echo $user_id; ?></small> </a>
-                                </li>
                                 <li>
-                                    <hr class="dropdown-divider">
+                                    <hr style="margin:0px">
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link zone mb-2 gap-2" href="dashboard.php">Dashboard</a>
+                                    <a class="nav-link zone mb-2 gap-2" href="dashboard.php" style="margin-top:8px">Dashboard</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link zone mb-2 gap-2" href="#">Another action</a>
@@ -178,18 +217,18 @@ if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 3600)) { //3600 
 
 
 
-                    // if not user is not logged in there will be log in and sign in options
-                } else {
+                        // if not user is not logged in there will be log in and sign in options
+                    } else {
             ?>
                 <li class="nav-item">
-                    <a href="login.php" class="btn btn-outline-secondary btn-sm" type="button">Log in</a>
+                    <a href="login.php" class="btn btn-outline-secondary btn-sm" style="width:fit-content" type="button">Log in</a>
                 </li>
                 <li class="nav-item">
-                    <a href="signup.php" class="btn btn-primary btn-sm" type="button">Sign up</a>
+                    <a href="signup.php" class="btn btn-primary btn-sm" style="width:fit-content" type="button">Sign up</a>
                 </li>
                 </ul>
             <?php
-                }
+                    }
             ?>
             <!--choosed to customise the bootstrap template for aesthatics-->
 

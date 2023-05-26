@@ -72,6 +72,17 @@ nav div .container-xl{
 
 
 
+
+/* dropdown button in the navbar */
+#dropdown-button{
+    border: none;
+    outline: none;
+    background-color:#fefefe;
+    width: 300px !important;
+    height: max-content !important;
+
+}
+
     /* close navbar when clicking outside */
     .close-navbar-toggler{
       position:absolute;  /* don't change this it stops the clicking outside */
@@ -278,6 +289,12 @@ nav .logo-start{
     
   
 }
+
+/* hide dropdown profile photo */
+#profile-photo-dropdown{
+    display: none;
+}
+
 
 nav .a .d-md-block, .d-none, .navbar-logo{
     padding: 0;
@@ -712,7 +729,7 @@ button.tablinks.active{
 
   /*
 ********************************
-overlay for navbar
+overlay for navbar (not in user)
 ********************************
 */
 
@@ -743,6 +760,52 @@ overlay for navbar
     justify-content: center;
     align-items: center;
   }
+
+
+  /*
+********************************
+  Portrait round image
+********************************
+*/
+
+
+
+  #profile-photo {
+    min-width:125px;
+    min-height:125px;
+    width:34vw;
+    height:34vw;
+    max-width:250px;
+    max-height:250px;
+    object-fit: cover;
+    border-radius: 50%;
+    
+  }
+
+  /* image for navbar */
+  #profile-photo-nav {
+    width:30px;
+    height:30px;
+    object-fit: cover;
+    border-radius: 50%;
+    
+  }
+
+    /* image for dropdown */
+
+  #profile-photo-dropdown {
+    width:50px;
+    height:50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+  /* hide arrow from dropdown-menu bootstrap class */
+a#navbarDropdown.nav-link.zone.dropdown-toggle::after{
+    display: none;
+}
+  
+
 
   /*
 ********************************

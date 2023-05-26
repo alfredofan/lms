@@ -23,6 +23,17 @@ include_once("src/inc/header.inc.php");
 
     }
 
+    h7 {
+        /* text-align: center; */
+        vertical-align: middle;
+        margin: 0px;
+        font-size: clamp(14px, 2vw, 22px);
+
+    }
+
+    .tablinks {
+        color: black;
+    }
 
     .tabcontent {
 
@@ -52,7 +63,7 @@ include_once("src/inc/header.inc.php");
 </style>
 
 
-<div class="container-sm d-flex flex-column justify-content-center" style="margin-top: 50px; ">
+<div class="container-sm d-flex flex-column justify-content-center" style="margin-top: 25px; ">
     <?php
 
     if (isset($_SESSION['login_user'])) {
@@ -61,12 +72,14 @@ include_once("src/inc/header.inc.php");
         while ($row = mysqli_fetch_assoc($result)) {
 
             $firstname = $row['firstname'];
-            $lastname    = $row['lastname'];
-            $email   = $row['email'];
-            $password    = $row['password'];
-            $type  = $row['type'];
-            $typename     = $row['typename'];
-            $user_id     = $row['user_id'];
+            $lastname  = $row['lastname'];
+            $email     = $row['email'];
+            $password  = $row['password'];
+            $type      = $row['type'];
+            $typename  = $row['typename'];
+            $user_id   = $row['user_id'];
+            $image     = $row['image'];
+
     ?>
 
             <h1 class="text-left" style="font-size: clamp(33px, 4vw, 60px); font-weight: bold;">Welcome <?php echo $row['firstname'] . ' ' . $row['lastname']; ?> </h1><br>
@@ -333,42 +346,38 @@ include_once("src/inc/header.inc.php");
             <!-- <h3>My Details</h3> -->
             <p>Manage your details.</p><br>
 
-            <div class="d-flex justify-content-center">
-                <div class="form ">
-                    <!-- <h4 style="font-size: clamp(22px, 3vw, 45px);">Details</h4> -->
-                    <!-- <hr> -->
-                    <!-- Displaying Data Read From Database -->
-                    <span style="font-size: clamp(12px, 1.25vw, 15px);">First Name: <?php echo $firstname; ?></span>
-                    <!-- <hr> -->
-                    <br>
+            <div class="container-sm d-flex justify-content-center" id="userdetails" style="margin-top:25px">
 
-                    <span style="font-size: clamp(12px, 1.25vw, 15px);">Last Name: <?php echo $lastname; ?></span>
-                    <!-- <hr> -->
-                    <br>
+                <div class="container-text aling-content-center" role="grid" aria-label="Text Grid" style="margin-top:0px">
+                    <div class=" col align-content-start" role="grid" aria-label="Text Grid">
 
-                    <span style="font-size: clamp(12px, 1.25vw, 15px);">E-mail: <?php echo $email; ?></span>
-                    <!-- <hr> -->
-                    <br>
-
-                    <span style="font-size: clamp(12px, 1.25vw, 15px);">User type: <?php echo $typename; ?></span>
-                    <!-- <hr> -->
-                    <br>
-                    <span style="font-size: clamp(12px, 1.25vw, 15px);">User ID: <?php echo $user_id ?></span>
-                    <!-- <hr> -->
-                    <br> <br>
-
-                    <a href="user.php?edit=<?php echo $user_id; ?>" class="btn btn-primary btn-sm">Edit</a>
+                        <div class="row d-flex flex-row container-text justify-content-center" role="row" style="width:fit-content; margin-top:0px">
+                            <div class="col-12 col-md-4 d-flex justify-content-center align-items-center" role="gridcell" style="width:fit-content">
+                                <?php
+                                echo '<img src="img/user_img/' . $image . '" class="img-fluid " id="profile-photo" alt="profile photo" style="">';
+                                ?>
+                            </div>
+                            <div class="col-12 col-md-6 p-2" role="gridcell" style="width:fit-content"> <!--alternative for "flex row reverse" in this case would be "order-md-last" -->
+                                <h2 class="d-flex flex-row align-items-center justify-content-start" style="font-size: clamp(22px, 4vw, 45px);">
+                                    <?php echo $firstname . ' ' . $lastname; ?>
+                                </h2>
+                                <h7 class="card-subtitle mb-2 text-muted"><?php echo $email ?></h7>
+                                <p class="card-text" style="margin-bottom: 0px;"><small>User type &#8231; <?php echo $typename ?></small></p>
+                                <p class="card-text mb-3" style="margin-bottom: 0px;"><small>User ID &#8231; <?php echo $user_id ?></small></p>
 
 
+                                <a href="user.php?edit=<?php echo $user_id; ?>" class="btn btn-primary btn-sm">Edit</a>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
-
-
-
         </div>
 
+
         <script>
+            // js for changing tabs
             function openTab(evt, tabName) {
                 var i, tabcontent, tablinks;
                 tabcontent = document.getElementsByClassName("tabcontent");

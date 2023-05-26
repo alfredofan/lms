@@ -41,7 +41,7 @@ if (isset($_GET['edit'])) {
 <!-- populate fields dynamically with data fatched from db -->
 
 
-<div class="container-sm d-flex justify-content-center" id="bookdetails" style="margin-top:75px">
+<div class="container-sm d-flex justify-content-center" id="bookdetails" style="margin-top:25px">
 
     <div class="container-text aling-content-center" role="grid" aria-label="Text Grid">
         <div class=" col align-content-start" role="grid" aria-label="Text Grid">
@@ -63,8 +63,8 @@ if (isset($_GET['edit'])) {
                     <p style="padding-top: 30px ;font-size: clamp(15px, 2vw, 22px); text-align:justify">
                         <!-- space reserved for book synopsis -->
                     </p>
-                    <form class="col align-self-center" action="#" method="post" enctype="multipart/form-data">
-                        <select class="form-select mb-3" name="status" id="status" aria-label="Default select example">
+                    <form class="col align-self-center" action="#" method="post" enctype="multipart/form-data" style="margin: 0px">
+                        <select class="form-select mb-3" name="status" id="status" aria-label="Default select example" style="width:fit-content;">
                             <option selected><?php echo $row2['status'] ?? ''; ?></option>
                             <option value="Available">Available</option>
                             <option value="On loan">On loan</option>
