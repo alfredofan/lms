@@ -10,8 +10,8 @@ include_once("src/inc/header.inc.php");
 
 
 
-<div class="card bg-dark text-white " name="heroimg" id="heroimg">
-    <img src="img\bannerLMSbw_optimized.jpg" class="img-fluid" alt="books" style="padding-top: 0px ; "> <!-- padding to get more min-hight -->
+<div class="card bg-dark text-white " name="heroimg" id="heroimg" style="min-height: fit-content;">
+    <img src="img\bannerLMSbw_optimized.jpg" class="img-fluid" alt="books" style="padding-top: 0px ; position:relative"> <!-- padding to get more min-hight -->
     <div class="card-img-overlay">
         <!-- <h2>This is the main content</h2>
         <h5 class="card-title">Card title</h5>

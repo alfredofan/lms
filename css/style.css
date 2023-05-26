@@ -36,7 +36,7 @@ body {
 .navbar {
     overflow: visible;
     background-color: white;
-    position: fixed relative; /*to fix the menu*/
+    position:  fixed relative; /*to fix the menu*/
     width: 100%; /*to position the menu 100% in the whole screen*/
     padding: 7.5px;
     font-size: 16px;
@@ -350,7 +350,7 @@ Author: A designer who codes
     height: 10px;/*the height was kept in 10px to make the lines centralized in the navbar */
     position: relative;
     padding: 17.5px; 
-    margin-right: 15px;
+    /* margin-right: 15px; */
     /*this padding was added in order to avoid navbar hight difference at the transition from mobile
     to desktop screen (screen with higher width).*/
 
@@ -648,7 +648,102 @@ div .card-body{
 }
 
 
+  /*
+********************************
+            Tabs
+********************************
+*/
 
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  /* Style the buttons inside the tab */
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+  }
+  
+  /* Change background color of buttons on hover */
+  /* .tab button:hover {
+    background-color: #ddd;
+  } */
+  
+  /* Create an active/current tablink class */
+  /* .tab button.active {
+    background-color: #ccc;
+  } */
+  
+button.tablinks{
+    font-size: clamp(16px, 2.5vw, 22px);
+     font-weight:500;
+    /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+}
+
+button.tablinks:hover{
+ opacity: 0.5;
+}
+
+button.tablinks.active{
+    font-weight:600;
+   }
+
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    /* border-bottom: 1px solid #ccc; */
+
+  }
+
+
+
+  /*
+********************************
+overlay for navbar
+********************************
+*/
+
+
+  #overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+  }
+
+  #text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   /*
 ********************************
