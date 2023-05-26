@@ -74,8 +74,7 @@ nav div .container-xl{
 
     /* close navbar when clicking outside */
     .close-navbar-toggler{
-      position: relative;
-      overflow:visible;
+      position:absolute;  /* don't change this it stops the clicking outside */
       top:0;
       left:0;
       height:100%;

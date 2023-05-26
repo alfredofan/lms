@@ -62,7 +62,7 @@ if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 3600)) { //3600 
             </a>
 
 
-            <button class="navbar-toggler collapsed d-flex d-lg-none flex-column justify-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler collapsed d-flex d-lg-none flex-column justify-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
                 <span class="toggler-icon top-line"></span><!--lines from the humburger menu-->
                 <span class="toggler-icon middle-line"></span>
@@ -70,7 +70,7 @@ if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 3600)) { //3600 
             </button>
 
 
-            <div class="collapse navbar-collapse justify-content-between" data-toggle="collapse" data-target=".nav-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse justify-content-between" data-bs-toggle="collapse" data-bs-toggle=".nav-collapse" id="navbarSupportedContent">
 
 
                 <a class="navbar-logo d-none d-md-block d-flex justify-content-start" href="index.php">
