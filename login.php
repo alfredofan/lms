@@ -77,7 +77,7 @@ include_once("src/inc/header.inc.php");
                     </div>
                 </div>
 
-            <?php
+                <?php
 
             } else {
 
@@ -97,19 +97,88 @@ include_once("src/inc/header.inc.php");
                 $_SESSION['login_type']  = $row['typename'];
                 $_SESSION['login_image'] = $row['image'];
                 $_SESSION['user_id']     = $row['user_id'];
+                $_SESSION['password_timestamp']     = $row['password_timestamp'];
 
+                $password_timestamp = $_SESSION['password_timestamp'];
+                $id = $_SESSION['user_id'];
 
                 // Login time is stored in a session variable
                 $_SESSION['start'] = time(); // Taking now logged in time.
-                header("location:index.php");
+
+
+                //capturing todays date
+                $date = new DateTime(''); // output: string(19) "2022-10-09 18:39:16"
+                $timestamp = $date->format('Y-m-d H:i:s');
+
+                // if ($timestamp) {
+                //     echo $timestamp;
+                // } else { // format failed
+                //     echo "Unknown Time";
+                // }
+
+
+                // checking when last time password was modified / calculate date count
+                // Prepare the query
+                // Get the current date
+                $currentDate = new DateTime();
+
+                // Convert the password timestamp to a DateTime object
+                $passwordTimestamp = new DateTime($password_timestamp);
+
+                // Calculate the interval between the password timestamp and the current date
+                $interval = $passwordTimestamp->diff($currentDate);
+
+                // Get the number of days from the interval
+                $dateCount = $interval->days;
+
+                $int_dateCount = (int)$dateCount;
+
+                echo "Date Count: " . $dateCount;
+                echo "Date Count: " . $int_dateCount;
+
+                // Output the date count to meet gelos password policy criteria of 120 days
+                if ($int_dateCount >= 120) {
+                ?>
+
+                    <script type="text/javascript">
+                        alert('<?php
+
+                                echo "Password Update Reminder: It is time to update your password. ";
+                                //echo "Date Count: " . $int_dateCount;
+
+                                ?>');
+                    </script>
+
+            <?php
+                }
+
+
+
+
+
+
+
+
+
+
+                // echo '<script>alert( 
+
+
+
+                // )';
+            }
+
+            header("location:index.php");
+
+
             ?>
-                <script type="text/javascript">
-                    window.location = "browse.php"
-                </script>
+            <script type="text/javascript">
+                window.location = "browse.php"
+            </script>
 
         <?php
-            }
         }
+
 
         ?>
 
