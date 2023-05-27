@@ -119,9 +119,8 @@ include_once("src/inc/header.inc.php");
             <!-- Sign up allow only normal user "member" and blank user photo-->
             <input style="display: none;" type="text" name="typename" value="User">
             <input style="display: none;" type="number" name="type" value="2">
-            <input style="display: none;" type="number" name="image" value="blank.png">
+            <input style="display: none;" type="text" name="image" value="blank.png">
 
-            blank.png
             <button type="submit" name="submit" class="btn btn-primary btn-sm mb-3">Submit</button>
 
 
@@ -147,12 +146,21 @@ include_once("src/inc/header.inc.php");
             if ($count == 0) {
 
                 //if no duplicates found, user can register
-                mysqli_query($db, "INSERT INTO `USER` (`firstname`, `lastname`, `email`, `password`, `typename`, `type`) 
+
+
+                // timestamp for new password submission
+                $date = new DateTime(''); // output: string(19) "2022-10-09 18:39:16"
+                $timestamp = $date->format('Y-m-d H:i:s');
+
+
+
+                mysqli_query($db, "INSERT INTO `USER` (`firstname`, `lastname`, `email`, `password`, `typename`, `type`, `image`,`password_timestamp` ) 
      VALUES('$_POST[firstname]', '$_POST[lastname]','$_POST[email]','$_POST[password]',
-     '$_POST[typename]','$_POST[type]','$_POST[image]');");
+     '$_POST[typename]','$_POST[type]','$_POST[image]', '$timestamp');");
         ?>
                 <script type="text/javascript">
                     alert("Registration Successfull");
+                    window.location = "login.php"
                 </script>
             <?php
             }

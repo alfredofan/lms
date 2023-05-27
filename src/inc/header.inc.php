@@ -20,6 +20,9 @@ if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 3600)) { //3600 
     echo '<script>alert("Session is expired.")</script>'; //testing session
     header("location:index.php");
 } else
+
+
+
     //echo '<script>alert("Current session exists.")</script>'; //testing session
 ?>
 

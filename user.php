@@ -1,6 +1,8 @@
 <?php
 include_once("src/inc/config.php");
 include_once("src/inc/header.inc.php");
+include_once("src/inc/session_checker.php");
+
 ?>
 
 
@@ -266,12 +268,24 @@ if (isset($_POST['submit_typename'])) {
 
 
 
+            <!-- testing session variale
+            <script type="text/javascript">
+                alert('<?php
 
-            <!--testing session variale -->
-            <!-- <script type="text/javascript">
-                alert('<?php //echo $_SESSION['user_id'];
+                        // $date = new DateTime(''); // output: string(19) "2022-10-09 18:39:16"
+                        // $timestamp = $date->format('Y-m-d H:i:s');
+
+                        // if ($timestamp) {
+                        //     echo $timestamp;
+                        // } else { // format failed
+                        //     echo "Unknown Time";
+                        // }
+
+
                         ?>');
             </script> -->
+
+
 
             <!-- checking if user account match with account being edited (owns the account) -->
             <?php
@@ -375,6 +389,14 @@ if (isset($_POST['submit_typename'])) {
                         $id = $_GET['edit'];
 
 
+
+
+                        // timestamp for new password submission
+                        $date = new DateTime(''); // output: string(19) "2022-10-09 18:39:16"
+                        $timestamp = $date->format('Y-m-d H:i:s');
+
+
+
                         $query = "SELECT * FROM user WHERE user_id = $id";
 
 
@@ -386,14 +408,13 @@ if (isset($_POST['submit_typename'])) {
 
                         //table user columns 
 
-                        $password_timestamp     = time();
                         $password      = $_POST['password'];
 
 
 
 
                         $sql1 = "UPDATE user SET  
-                     `password`='$password', `password_timestamp`='$password' WHERE user_id='$id';";
+                     `password`='$password', `password_timestamp`='$timestamp' WHERE user_id='$id';";
 
                         if (mysqli_query($db, $sql1)) {
                     ?>

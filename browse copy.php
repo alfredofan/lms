@@ -1,6 +1,8 @@
 <?php
 include_once("src/inc/config.php");
 include_once("src/inc/header.inc.php");
+include_once("src/inc/session_checker.php");
+
 ?>
 
 <!-- <h2>This is the main content</h2> -->

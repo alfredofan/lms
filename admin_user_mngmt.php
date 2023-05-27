@@ -1,6 +1,9 @@
 <?php
 include_once("src/inc/config.php");
 include_once("src/inc/header.inc.php");
+include_once("src/inc/session_checker.php");
+include_once("src/inc/admin_checker.php");
+
 ?>
 
 
