@@ -77,46 +77,40 @@ include_once("src/inc/header.inc.php");
                     </div>
                 </div>
 
-                <?php
+            <?php
 
             } else {
+
                 // successfull login
 
-                $result = mysqli_query($db, "SELECT * FROM `user`WHERE email='$_POST[username]'");
-                while ($row = mysqli_fetch_array($result)) {
-
-                    $firstname = $row['firstname'];
-                    $lastname    = $row['lastname'];
-                    $email   = $row['email'];
-                    $type  = $row['type'];
-                    $typename     = $row['typename'];
-                    $user_id     = $row['user_id'];
-                    $image_user     = $row['iamge'];
+                $row = mysqli_fetch_array($result);
 
 
-                    // create session variale under username
-                    $_SESSION['login_user'] = $_POST['username'];
-                    $_SESSION['login_user_firstname'] = $firstname;
-                    $_SESSION['login_user_lastname'] = $lastname;
-
-                    $_SESSION['login_image'] = $image_user;
-                    $_SESSION['login_type'] = $typename;
-                    $_SESSION['image_user'] = $image_user;
-                    $_SESSION['image_id'] = $user_id;
+                // create session variale under username
 
 
-                    // Login time is stored in a session variable
-                    $_SESSION['start'] = time(); // Taking now logged in time.
-                    header("location:index.php");
-                ?>
-                    <script type="text/javascript">
-                        window.location = "browse.php"
-                    </script>
+                $_SESSION['login_user'] = $_POST['username']; //email
+
+                $_SESSION['login_user_firstname'] = $row['firstname'];
+                $_SESSION['login_user_lastname']  = $row['lastname'];
+
+                $_SESSION['login_type']  = $row['typename'];
+                $_SESSION['login_image'] = $row['image'];
+                $_SESSION['user_id']     = $row['user_id'];
+
+
+                // Login time is stored in a session variable
+                $_SESSION['start'] = time(); // Taking now logged in time.
+                header("location:index.php");
+            ?>
+                <script type="text/javascript">
+                    window.location = "browse.php"
+                </script>
 
         <?php
-                }
             }
         }
+
         ?>
 
 

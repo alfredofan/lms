@@ -51,21 +51,15 @@ if (isset($_GET['edit'])) {
                     <!-- <p style="padding-top: 30px ;font-size: clamp(15px, 2vw, 22px); text-align:justify">
                         space reserved for user synopsis 
                     </p> -->
-                    <?php
-                    if ($_SESSION['login_type'] == 'Administrator') {
-                    ?>
-                        <form class="col align-self-center" action="#" method="post" enctype="multipart/form-data" style="margin: 0px;">
-                            <select class="form-select mb-3" name="typename" id="typename" aria-label="Default select typename" style="width:fit-content;">
-                                <option selected><?php echo $row['typename'] ?? ''; ?></option>
-                                <option value="Administrator">Administrator</option>
-                                <option value="User">User</option>
-                            </select>
-                            <button type="submit" name="submit_typename" class="btn btn-primary btn-sm">Save</button>
+                    <form class="col align-self-center" action="#" method="post" enctype="multipart/form-data" style="margin: 0px;">
+                        <select class="form-select mb-3" name="typename" id="typename" aria-label="Default select typename" style="width:fit-content;">
+                            <option selected><?php echo $row['typename'] ?? ''; ?></option>
+                            <option value="Administrator">Administrator</option>
+                            <option value="User">User</option>
+                        </select>
+                        <button type="submit" name="submit_typename" class="btn btn-primary btn-sm">Save</button>
 
-                        </form>
-                    <?php
-                    }
-                    ?>
+                    </form>
                 </div>
             </div>
         </div>
@@ -262,155 +256,98 @@ if (isset($_POST['submit_typename'])) {
 
 
 
+
+
+
             <hr>
+            <!-- Password Reset form -->
+            <h6 style="font-size: clamp(18px, 2vw, 22px);">Change your Password.</h6><br>
 
+            <form class="col align-self-center" action="#" method="post" enctype="multipart/form-data">
 
-
-
-            <!--testing session variale -->
-            <!-- <script type="text/javascript">
-                alert('<?php //echo $_SESSION['user_id'];
-                        ?>');
-            </script> -->
-
-            <!-- checking if user account match with account being edited (owns the account) -->
-            <?php
-            if ($_SESSION['user_id'] == $id) {
-            ?>
-                <!-- Chang of Password form for user using his own account-->
-                <h6 style="font-size: clamp(18px, 2vw, 22px);">Change your Password.</h6><br>
-
-                <form class="col align-self-center" action="#" method="post" enctype="multipart/form-data">
-
-                    <!-- Password must meet gelos password policy containing at least one special character, one number, one uppercase and lowercase letter, and at least 8 or more characters -->
-                    <div class="row mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <div class="col-12">
-                            <input type="password" class="form-control" id="password" name="password" minlength="8" pattern="((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Must contain at least one number and one special character, one number, one uppercase and lowercase letter, and at least 8 or more characters" required value="<?php echo $row['password'] ?? ''; ?>">
-                        </div>
+                <!-- Password must meet gelos password policy containing at least one special character, one number, one uppercase and lowercase letter, and at least 8 or more characters -->
+                <div class="row mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="col-12">
+                        <input type="password" class="form-control" id="password" name="password" minlength="8" pattern="((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Must contain at least one number and one special character, one number, one uppercase and lowercase letter, and at least 8 or more characters" required value="<?php echo $row['password'] ?? ''; ?>">
                     </div>
+                </div>
 
-                    <div class="row mb-3">
-                        <label for="confirm_password" class="form-label">Confirm Password</label>
-                        <div class="col-12">
-                            <input type="password" class="form-control" id="confirm_password" name="confirm_password">
-                        </div>
+                <div class="row mb-3">
+                    <label for="confirm_password" class="form-label">Confirm Password</label>
+                    <div class="col-12">
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password">
                     </div>
-
-                    <button type="submit" name="submit_password" class="btn btn-primary btn-sm">Save</button>
-
-
-                <?php
-            }
+                </div>
 
 
-            // checking is user doesn't own account but is an administrator.
-            if ($_SESSION['user_id'] != $id and 'Administrator') {
-                ?>
+                <!-- Matching fields "password" and "confirm password"  for verification -->
+                <script>
+                    var password = document.getElementById("password"),
+                        confirm_password = document.getElementById("confirm_password");
 
-                    <!-- Password Reset form for admin managing someone acccount-->
-                    <h6 style="font-size: clamp(18px, 2vw, 22px);">Reset User Password.</h6><br>
-
-                    <form class="col align-self-center" action="#" method="post" enctype="multipart/form-data">
-
-                        <!-- Password must meet gelos password policy containing at least one special character, one number, one uppercase and lowercase letter, and at least 8 or more characters -->
-                        <!-- default reset password  value="Password!23" -->
-                        <input style="display: none;" type="password" class="form-control" id="password" name="password" minlength="8" pattern="((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Must contain at least one number and one special character, one number, one uppercase and lowercase letter, and at least 8 or more characters" required value="Password!23">
-
-                        <input style="display: none;" type="password" class="form-control" id="confirm_password" name="confirm_password" value="Password!23">
-
-
-                        <button type="submit" name="submit_password" class="btn btn-primary btn-sm">Reset Password</button>
-                        <br><br><br>
-                        <p style="font-size: clamp(10px, 2vw, 15px);">
-                            <small>Temporary Password is: Password!23</small>
-                        </p>
-
-                        <p style="font-size: clamp(10px, 2vw, 15px);">
-                            <small>
-                                Please advise User of changes and recommend a password change at their earliest convenience to ensure the integrity of the account.
-                            </small>
-                        </p>
-
-
-                    <?php
-                }                        ?>
-
-                    </form>
-
-
-
-
-
-                    <!-- Matching fields "password" and "confirm password"  for verification -->
-                    <script>
-                        var password = document.getElementById("password"),
-                            confirm_password = document.getElementById("confirm_password");
-
-                        function validatePassword() {
-                            if (password.value != confirm_password.value) {
-                                confirm_password.setCustomValidity("Passwords Don't Match");
-                            } else {
-                                confirm_password.setCustomValidity('');
-                            }
-                        }
-
-                        password.onchange = validatePassword;
-                        confirm_password.onkeyup = validatePassword;
-                    </script>
-
-
-                    <!----------------------------------------->
-
-
-
-
-
-
-                    <!-- details form submission (password reset) -->
-                    <?php
-                    //getting confirmation from button save.
-                    if (isset($_POST['submit_password'])) {
-                        //get the user_id value from pressing button edit in any user from the browse.php page
-                        $id = $_GET['edit'];
-
-
-                        $query = "SELECT * FROM user WHERE user_id = $id";
-
-
-                        // connect to db and add query
-                        $result = mysqli_query($db, $query);
-                        //fatch data
-                        $row = mysqli_fetch_assoc($result);
-
-
-                        //table user columns 
-
-                        $password_timestamp     = time();
-                        $password      = $_POST['password'];
-
-
-
-
-                        $sql1 = "UPDATE user SET  
-                     `password`='$password', `password_timestamp`='$password' WHERE user_id='$id';";
-
-                        if (mysqli_query($db, $sql1)) {
-                    ?>
-
-                            <!--testing session variale -->
-                            <script type="text/javascript">
-                                alert("Saved Successfully.");
-                                //reload page to get updated fields
-                                window.location = "user.php?edit=<?php echo $row['user_id']; ?>";
-                            </script>
-
-                    <?php
-
+                    function validatePassword() {
+                        if (password.value != confirm_password.value) {
+                            confirm_password.setCustomValidity("Passwords Don't Match");
+                        } else {
+                            confirm_password.setCustomValidity('');
                         }
                     }
 
-                    ?>
+                    password.onchange = validatePassword;
+                    confirm_password.onkeyup = validatePassword;
+                </script>
+                <button type="submit" name="submit_password" class="btn btn-primary btn-sm">Save</button>
+
+            </form>
+
+
+
+
+            <!-- details form submission (password reset) -->
+            <?php
+            //getting confirmation from button save.
+            if (isset($_POST['submit_password'])) {
+                //get the user_id value from pressing button edit in any user from the browse.php page
+                $id = $_GET['edit'];
+
+
+                $query = "SELECT * FROM user WHERE user_id = $id";
+
+
+                // connect to db and add query
+                $result = mysqli_query($db, $query);
+                //fatch data
+                $row = mysqli_fetch_assoc($result);
+
+
+                //table user columns 
+
+                $password_timestamp     = time();
+                $password      = $_POST['password'];
+
+
+
+
+                $sql1 = "UPDATE user SET  
+                     `password`='$password', `password_timestamp`='$password' WHERE user_id='$id';";
+
+                if (mysqli_query($db, $sql1)) {
+            ?>
+
+                    <!--testing session variale -->
+                    <script type="text/javascript">
+                        alert("Saved Successfully.");
+                        //reload page to get updated fields
+                        window.location = "user.php?edit=<?php echo $row['user_id']; ?>";
+                    </script>
+
+            <?php
+
+                }
+            }
+
+            ?>
 
 
     </section>

@@ -23,7 +23,7 @@ include_once("src/inc/header.inc.php");
 
     }
 
-    h7 {
+    h6 {
         /* text-align: center; */
         vertical-align: middle;
         margin: 0px;
@@ -170,7 +170,7 @@ include_once("src/inc/header.inc.php");
                         echo "</td>";
                         echo "<td>";
                     ?>
-                        <a href="user.php?edit=<?php echo $user_id; ?>" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="user.php?edit=<?php echo $row2["user_id"]; ?>" class="btn btn-primary btn-sm">Edit</a>
                     <?php
 
                         echo "</td>";
@@ -361,7 +361,7 @@ include_once("src/inc/header.inc.php");
                                 <h2 class="d-flex flex-row align-items-center justify-content-start" style="font-size: clamp(22px, 4vw, 45px);">
                                     <?php echo $firstname . ' ' . $lastname; ?>
                                 </h2>
-                                <h7 class="card-subtitle mb-2 text-muted"><?php echo $email ?></h7>
+                                <h6 class="card-subtitle mb-2 text-muted"><?php echo $email ?></h6>
                                 <p class="card-text" style="margin-bottom: 0px;"><small>User type &#8231; <?php echo $typename ?></small></p>
                                 <p class="card-text mb-3" style="margin-bottom: 0px;"><small>User ID &#8231; <?php echo $user_id ?></small></p>
 
