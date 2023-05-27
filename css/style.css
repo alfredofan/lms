@@ -93,9 +93,22 @@ nav div .container-xl{
       z-index:1;
       cursor:pointer;
     }
-    .close-navbar-toggler.collapsed{
-      z-index:-1;
-    }
+    /* clicking out when navbar is not colapsed does't colapse navbar accidentally */
+    /* .close-navbar-toggler.collapsed{
+      z-index:-999999;
+    } */
+
+/* clicking outside limit  */
+
+#close-nav-click-out.close-navbar-toggler.collapsed{
+    display: none;
+    width: 0px;
+    height: 0px;
+    z-index:-999999;
+
+}
+
+
 
 /* centralize the navbar items and align verticaly (removing unwanted padding) */
 li.nav-item, a.nav-link.zone, form.d-flex{
@@ -255,6 +268,11 @@ footer{
 
 
     #profile-details{
+        display: none!important;
+        width: 0px;
+        height: 0px;
+    }
+    #myMenu{
         display: none!important;
         width: 0px;
         height: 0px;

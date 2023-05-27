@@ -116,9 +116,12 @@ include_once("src/inc/header.inc.php");
                 confirm_password.onkeyup = validatePassword;
             </script>
 
-            <!-- Sign up allow only normal user "member" -->
+            <!-- Sign up allow only normal user "member" and blank user photo-->
             <input style="display: none;" type="text" name="typename" value="User">
             <input style="display: none;" type="number" name="type" value="2">
+            <input style="display: none;" type="number" name="image" value="blank.png">
+
+            blank.png
             <button type="submit" name="submit" class="btn btn-primary btn-sm mb-3">Submit</button>
 
 
@@ -146,7 +149,7 @@ include_once("src/inc/header.inc.php");
                 //if no duplicates found, user can register
                 mysqli_query($db, "INSERT INTO `USER` (`firstname`, `lastname`, `email`, `password`, `typename`, `type`) 
      VALUES('$_POST[firstname]', '$_POST[lastname]','$_POST[email]','$_POST[password]',
-     '$_POST[typename]','$_POST[type]');");
+     '$_POST[typename]','$_POST[type]','$_POST[image]');");
         ?>
                 <script type="text/javascript">
                     alert("Registration Successfull");

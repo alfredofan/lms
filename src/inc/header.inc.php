@@ -49,7 +49,7 @@ if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 3600)) { //3600 
 <body>
 
     <!--   the <a> element below closes navbar when clicking outside if collapsed   -->
-    <a class="close-navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="close-navbar-toggler collapsed" id="close-nav-click-out" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     </a>
 
     <!--Navbar-->
@@ -77,37 +77,53 @@ if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 3600)) { //3600 
                     <img src="img/AF_LMS_logo.png" alt="AF-LMS-logo" class="logo-start">
                 </a>
 
-                <ul class="navbar-nav  mb-2 mb-lg-0" id="myMenu">
 
-                    <li class="nav-item" id="navbar-links-browse">
-                        <a class="nav-link zone" href="browse.php">Browse</a>
-                    </li>
-                    <li class="nav-item" id="navbar-links-return">
-                        <a class="nav-link zone" href="index.html#section2">Return/Delete</a>
-                    </li>
-                    <li class="nav-item" id="navbar-links-edit">
-                        <a class="nav-link zone" href="index.html#section3">Edit</a>
-                    </li>
+                <!--testing session variale -->
+                <!-- <script type="text/javascript">
+                    alert('<?php //echo $_SESSION['login_user'];
+                        //echo ' ';
+                        //echo $_SESSION['login_type'];
+                            ?>');
+                </script> -->
+
+                <?php
+                if (isset($_SESSION['login_user'])) {
+                ?>
+                    <ul class="navbar-nav  mb-2 mb-lg-0" id="">
+
+                        <li class="nav-item" id="navbar-links-browse">
+                            <a class="nav-link zone" href="browse.php">Browse</a>
+                        </li>
+                        <li class="nav-item" id="navbar-links-return">
+                            <a class="nav-link zone" href="index.html#section2">Return/Delete</a>
+                        </li>
+                        <li class="nav-item" id="navbar-links-edit">
+                            <a class="nav-link zone" href="index.html#section3">Edit</a>
+                        </li>
 
 
-                    <!--testing session variale -->
-                    <!-- <script type="text/javascript">
-                alert('<?php //echo $_SESSION['login_type'];
+                        <!--testing session variale -->
+                        <!-- <script type="text/javascript">
+                alert('<?php //echo $_SESSION['login_user'];
                         ?>');
             </script>-->
 
 
-                    <?php
-                    if (isset($_SESSION['login_user']) and $_SESSION['login_type'] == 'Administrator') {
-                    ?>
-                        <li class="nav-item" id="navbar-links-admin">
-                            <a class="nav-link zone" href="admin_user_mngmt.php">Admin</a>
-                        </li>
-                    <?php
-                    }
-                    ?>
+                        <?php
+                        if ($_SESSION['login_type'] == 'Administrator') {
+                        ?>
+                            <li class="nav-item" id="navbar-links-admin">
+                                <a class="nav-link zone" href="admin_user_mngmt.php">Admin</a>
+                            </li>
+                        <?php
+                        }
+                        ?>
+                    </ul>
+                <?php
+                }
+                ?>
 
-                </ul>
+
 
 
 
@@ -223,12 +239,14 @@ if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 3600)) { //3600 
                     // if not user is not logged in there will be log in and sign in options
                 } else {
                 ?>
-                    <li class="nav-item">
-                        <a href="login.php" class="btn btn-outline-secondary btn-sm" style="width:fit-content" type="button">Log in</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="signup.php" class="btn btn-primary btn-sm" style="width:fit-content" type="button">Sign up</a>
-                    </li>
+                    <ul class="navbar-nav  mb-2 mb-lg-0 d-flex  ">
+                        <li class="nav-item">
+                            <a href="login.php" class="btn btn-outline-secondary btn-sm" style="width:fit-content;margin-right: 0px;" type=" button">Log in</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="signup.php" class="btn btn-primary btn-sm" style="width:fit-content" type="button">Sign up</a>
+                        </li>
+                    </ul>
                     </ul>
                 <?php
                 }
@@ -283,7 +301,7 @@ if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 3600)) { //3600 
                     }
                 ?>
 
-                    <ul class="navbar-nav  mb-2 mb-lg-0" id="profile-details"> <!-- changed id "myMenu" in order to get beter positioning of other navbar items -->
+                    <ul class="navbar-nav  mb-2 mb-lg-0" id="profile-details"> <!-- changed id "myMenu" to id="profile-details"  in order to get beter positioning of other navbar items -->
 
                         <li class="container-text aling-content-center" id="profile-details" role="grid" aria-label="Text Grid" style="margin-top:0px">
                             <div class=" col align-content-start justify-content-center" id="profile-details" role="grid" aria-label="Text Grid" style="padding: 16px;">
