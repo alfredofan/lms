@@ -34,6 +34,26 @@ if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 3600)) { //3600 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="js/validation_logic.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#search").keyup(function() {
+                $.ajax({
+                    url: 'books_backend.php',
+                    type: 'post',
+                    data: {
+                        search: $(this).val()
+                    },
+                    success: function(result) {
+                        $("#result").html(result);
+
+                    }
+                });
+            });
+        });
+    </script>
+
 </head>
 
 

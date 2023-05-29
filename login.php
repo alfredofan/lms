@@ -106,9 +106,9 @@ include_once("src/inc/header.inc.php");
                 $_SESSION['start'] = time(); // Taking now logged in time.
 
 
-                //capturing todays date
-                $date = new DateTime(''); // output: string(19) "2022-10-09 18:39:16"
-                $timestamp = $date->format('Y-m-d H:i:s');
+                //capturing todays date TEST
+                // $date = new DateTime(''); // output: string(19) "2022-10-09 18:39:16"
+                // $timestamp = $date->format('Y-m-d H:i:s');
 
                 // if ($timestamp) {
                 //     echo $timestamp;

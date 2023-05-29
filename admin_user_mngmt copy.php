@@ -946,7 +946,7 @@ include_once("src/inc/admin_checker.php");
 
                                 echo "<td>";
                                 ?>
-                                <a href="borrow.php?edit=<?php echo $row['book_id']; ?>&type=<?php echo $row['transaction_id']; ?>" class="btn btn-primary btn-sm">Return</a>
+                                <a href="return.php?edit=<?php echo $row['book_id']; ?>&type=<?php echo $row['transaction_id']; ?>" class="btn btn-primary btn-sm">Return</a>
                             <?php
 
                                 echo "</td>";
@@ -1106,25 +1106,12 @@ include_once("src/inc/admin_checker.php");
                             echo $row["typename"];
                             echo "</td>";
 
-                            // disable return button ion case of book not on loan
+
                             echo "<td>";
-
-
-                            if ($row['status'] == "On loan") {
-
                             ?>
-                                <a href="borrow.php?edit=<?php echo $row['book_id']; ?>&type=<?php echo $row['transaction_id']; ?>" class="btn btn-primary btn-sm">Return</a>
-
-
-
-
-                            <?php
-                            } else {
-                            ?>
-
-                                <a href="borrow.php?edit=<?php echo $row['book_id']; ?>&type=<?php echo $row['transaction_id']; ?>" class="btn btn-primary btn-sm disabled" aria-disabled="true">Return</a>
+                            <a href="return.php?edit=<?php echo $row['book_id']; ?>&type=<?php echo $row['transaction_id']; ?>" class="btn btn-primary btn-sm">Return</a>
                     <?php
-                            }
+
                             echo "</td>";
                             echo "</tr>";
                         }

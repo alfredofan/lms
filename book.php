@@ -72,6 +72,7 @@ if (isset($_GET['edit'])) {
                             <option value="On loan">On loan</option>
                             <option value="Deleted">Deleted</option>
                         </select>
+
                         <button type="submit" name="submit_status" class="btn btn-primary btn-sm">Save</button>
 
                     </form>
@@ -90,8 +91,24 @@ if (isset($_POST['submit_status'])) {
     //table book_status columns 
     $status = $_POST['status'];
 
+
+    // timestamp for new password submission
+    $currentDate = new DateTime();  // output: string(19) "2022-10-09 18:39:16"
+    $timestamp = $currentDate->format('Y-m-d H:i:s');
+    // Calculate the interval between the password timestamp and the current date
+
+    // $interval = $timestamp->diff($currentDate);
+    // // Get the number of days from the interval
+
+    // $dateCount = $interval->days;
+
+    // $int_dateCount = (int)$dateCount;
+
+
+
+
     //query for table book_status
-    $query1 = "UPDATE book_status SET `status`='$status' WHERE book_id='$id';";
+    $query1 = "UPDATE book_status SET `user_id`='$_SESSION[user_id]', `status`='$status', `applied_date`='$timestamp' WHERE book_id='$id';";
     if (mysqli_query($db, $query1)) {
 ?>
 
@@ -123,11 +140,11 @@ if (isset($_POST['submit_status'])) {
                 </div>
             </div>
             <?php
-            if (isset($_FILES['image'])) {
-                move_uploaded_file($_FILES['image']['tmp_name'], "img/" . $_FILES['image']['name']);
-            } else {
-                echo "image not found!";
-            }
+            // if (isset($_FILES['image'])) {
+            //     move_uploaded_file($_FILES['image']['tmp_name'], "img/" . $_FILES['image']['name']);
+            // } else {
+            //     echo "image not found!";
+            // }
 
             ?>
             <div class="row mb-3">

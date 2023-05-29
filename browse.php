@@ -152,12 +152,24 @@ if (mysqli_num_rows($search_result) == 0) {
                                     // make button desale in case ook status is on loan or deleted
                                     if ($row2['status'] == "On loan" || $row2["status"] == "Deleted") {
                                     ?>
-                                        <a href="signup.php" class="btn btn-primary btn-sm disabled" type="button" aria-disabled="true">Borrow</a>
+                                        <a href="borrow.php?edit=<?php echo $row['book_id'];
+                                                                    //if the variable $row['transaction_id'] is set it will send it to the next page 
+                                                                    if (isset($row['transaction_id'])) {
+                                                                    ?>&type=<?php echo $row['transaction_id'];
+                                                                        }
+
+                                                                            ?>" class="btn btn-primary btn-sm disabled" type="button" aria-disabled="true">Borrow</a>
                                     <?php
 
                                     } else {
                                     ?>
-                                        <a href="signup.php" class="btn btn-primary btn-sm" type="button">Borrow</a>
+                                        <a href="borrow.php?edit=<?php echo $row['book_id'];
+                                                                    //if the variable $row['transaction_id'] is set it will send it to the next page 
+                                                                    if (isset($row['transaction_id'])) {
+                                                                    ?>&type=<?php echo $row['transaction_id'];
+                                                                        }
+
+                                                                            ?>" class="btn btn-primary btn-sm" type="button">Borrow</a>
                         <?php
 
                                     }

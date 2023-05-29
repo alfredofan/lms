@@ -101,246 +101,14 @@ include_once("src/inc/session_checker.php");
 
 
 
+
         <div class="tab">
             <button class="tablinks" onclick="openTab(event, 'Details')" id="defaultOpen">My Details</button>
-            <button class="tablinks" onclick="openTab(event, 'Books')">My Transactions</button>
+
+            <button class="tablinks" onclick="openTab(event, 'transactions')">My Transactions</button>
         </div>
 
-        <div id="Users" class="tabcontent">
-            <!-- <h2>Users List</h2> -->
-            <p>Manage Users.</p>
 
-
-            <!-- User List -->
-            <div class="container-sm d-flex justify-content-center " style="height: fit-content; min-width:fit-content;">
-
-
-
-                <div>
-
-                    <?php
-                    $result2 = mysqli_query($db, "SELECT * FROM `user`;");
-
-                    echo "<table class='table table-hover'>";
-                    echo "<tr>";
-                    echo "<th>";
-                    echo "First name";
-                    echo "</th>";
-                    echo "<th>";
-                    echo "Last name";
-                    echo "</th>";
-                    echo "<th>";
-                    echo "Email";
-                    echo "</th>";
-                    echo "<th>";
-                    echo "User type";
-                    echo "</th>";
-                    echo "<th>";
-                    echo "Type name";
-                    echo "</th>";
-                    echo "<th>";
-                    echo "User ID";
-                    echo "</th>";
-                    echo "<th>";
-                    echo "Action";
-                    echo "</th>";
-                    echo "</tr>";
-
-
-
-                    while ($row2 = mysqli_fetch_array($result2)) {
-                        echo "<tr>";
-                        echo "<td>";
-                        echo $row2["firstname"];
-                        echo "</td>";
-                        echo "<td>";
-                        echo $row2["lastname"];
-                        echo "</td>";
-                        echo "<td>";
-                        echo $row2["email"];
-                        echo "</td>";
-                        echo "<td>";
-                        echo $row2["type"];
-                        echo "</td>";
-                        echo "<td>";
-                        echo $row2["typename"];
-                        echo "</td>";
-                        echo "<td>";
-                        echo $row2["user_id"];
-                        echo "</td>";
-                        echo "<td>";
-                    ?>
-                        <a href="user.php?edit=<?php echo $row2["user_id"]; ?>" class="btn btn-primary btn-sm">Edit</a>
-                    <?php
-
-                        echo "</td>";
-                        echo "</tr>";
-                    }
-
-                    echo "</table>";
-
-                    ?>
-
-                </div>
-            </div>
-
-
-
-
-
-
-
-        </div>
-
-        <div id="Books" class="tabcontent">
-            <!-- <h2>Book Inventory</h2> -->
-            <p>Manage your Transaction History.</p>
-
-
-
-            <!-- Library list -->
-            <div class="container-sm d-flex justify-content-center " style="height: fit-content; min-width:fit-content;">
-
-
-
-                <div>
-
-                    <?php
-                    $result = mysqli_query($db, "SELECT * FROM `book`;");
-
-                    echo "<table class='table table-hover d-flex aling-items-center'>";
-                    echo "<tr>";
-                    echo "<th>";
-                    echo "Image";
-                    echo "</th>";
-                    echo "<th>";
-                    echo "Title";
-                    echo "</th>";
-                    echo "<th>";
-                    echo "Author";
-                    echo "</th>";
-                    echo "<th>";
-                    echo "Publisher";
-                    echo "</th>";
-                    echo "<th>";
-                    echo "Language";
-                    echo "</th>";
-                    echo "<th>";
-                    echo "Category";
-                    echo "</th>";
-                    echo "<th>";
-                    echo "Status";
-                    echo "</th>";
-                    echo "<th>";
-                    echo "Action";
-                    echo "</th>";
-                    echo "</tr>";
-
-
-
-                    while ($row = mysqli_fetch_array($result)) {
-                        echo "<tr>";
-                        echo "<td style='margin:0px; padding:0px;'>";
-                        echo '<img src="img/' . $row['image'] . '" class="img-fluid p-1" alt="book cover" style="width:75px;">';
-                        echo "</td>";
-                        echo "<td>";
-                        echo $row["book_title"];
-                        echo "</td>";
-                        echo "<td>";
-                        echo $row["author"];
-                        echo "</td>";
-                        echo "<td>";
-                        echo $row["publisher"];
-                        echo "</td>";
-                        echo "<td>";
-                        echo $row["language"];
-                        echo "</td>";
-                        echo "<td>";
-                        echo $row["category"];
-                        echo "</td>";
-
-
-
-
-
-
-
-
-                        $result2 = mysqli_query($db, "SELECT * FROM `book_status`;");
-                        $result3 = mysqli_query($db, "SELECT * FROM `book`;");
-                        if (mysqli_num_rows($result3) > 0) {
-                            $row2_count = mysqli_num_rows($result2);
-                            $row3_count = mysqli_num_rows($result3);
-                            // find amount of remaining rows to make countdown
-                            $remaining_rows = min($row2_count, $row3_count);
-
-                            //loop countdown comparing book_id column from book_status until get match with current iteration row from parent while  
-                            while ($remaining_rows-- > 0) {
-                                $row2 = mysqli_fetch_assoc($result2);
-                                // $row3 = mysqli_fetch_assoc($result3);
-                                if ($row2["book_id"] == $row["book_id"]) {
-                                    // selecting color for each status
-                                    if ($row2["status"] == "Available") {
-
-                    ?><td>
-                                            <p style="color:gray;"><small>
-                                                    <?php
-                                                    echo $row2["status"];
-                                                    ?>
-                                                </small></p>
-                                        </td>
-
-                                    <?php
-                                    }
-                                    if ($row2["status"] == "Deleted") {
-
-                                    ?><td>
-                                            <p style="color:gray;">
-                                                <?php
-                                                echo $row2["status"]; ?>
-                                            </p>
-
-                                        </td>
-                                    <?php
-                                    }
-                                    if ($row2['status'] == "On loan") {
-
-                                    ?><td>
-                                            <p style="color:firebrick;"><small>
-                                                    <?php
-                                                    echo $row2["status"]; ?>
-                                                </small></p>
-                                        </td>
-
-                        <?php
-
-
-                                    }
-                                }
-                            }
-                        }
-
-
-
-                        echo "<td>";
-                        ?>
-                        <a href="book.php?edit=<?php echo $row['book_id']; ?>" class="btn btn-primary btn-sm">Edit</a>
-                    <?php
-
-                        echo "</td>";
-                        echo "</tr>";
-                    }
-
-                    echo "</table>";
-
-                    ?>
-
-                </div>
-            </div>
-
-
-
-        </div>
 
         <div id="Details" class="tabcontent">
             <!-- <h3>My Details</h3> -->
@@ -374,6 +142,168 @@ include_once("src/inc/session_checker.php");
                 </div>
             </div>
         </div>
+
+
+
+        <div id="transactions" class="tabcontent">
+            <!-- <h2>Book transactions</h2> -->
+            <p>Manage Transactions.</p><br>
+
+
+            <!-- transaction list -->
+            <div class="container-sm d-flex justify-content-center " style="height: fit-content; min-width:fit-content;">
+
+
+
+                <div>
+
+                    <?php
+                    $result = mysqli_query($db, "SELECT * FROM `book_transactions` WHERE user_id='$user_id';");
+
+                    echo "<table class='table table-hover d-flex aling-items-center'>";
+                    echo "<tr>";
+                    echo "<th>";
+                    echo "Image";
+                    echo "</th>";
+                    echo "<th>";
+                    echo "Title";
+                    echo "</th>";
+                    echo "<th>";
+                    echo "Status";
+                    echo "</th>";
+                    echo "<th>";
+                    echo "Date Borrowed";
+                    echo "</th>";
+                    echo "<th>";
+                    echo "Return By Date";
+                    echo "</th>";
+                    echo "<th>";
+                    echo "Days Count";
+                    echo "</th>";
+                    echo "<th>";
+                    echo "Date of Return";
+                    echo "</th>";
+                    echo "<th>";
+                    echo "First name";
+                    echo "</th>";
+                    echo "<th>";
+                    echo "Last name";
+                    echo "</th>";
+
+                    echo "<th>";
+                    echo "Action";
+                    echo "</th>";
+                    echo "</tr>";
+
+
+
+                    while ($row = mysqli_fetch_array($result)) {
+                        echo "<tr>";
+                        echo "<td style='margin:0px; padding:0px;'>";
+                        echo '<img src="img/' . $row['image'] . '" class="img-fluid p-1" alt="book cover" style="width:75px;">';
+                        echo "</td>";
+                        echo "<td>";
+                        echo $row["book_title"];
+                        echo "</td>";
+
+
+
+                        // selecting color for each status
+                        if ($row["status"] == "Available") {
+
+                    ?><td>
+                                <p style="color:gray;"><small>
+                                        <?php
+                                        echo $row["status"];
+                                        ?>
+                                    </small></p>
+                            </td>
+
+                        <?php
+                        }
+                        if ($row["status"] == "Deleted") {
+
+                        ?><td>
+                                <p style="color:gray;">
+                                    <?php
+                                    echo $row["status"]; ?>
+                                </p>
+
+                            </td>
+                        <?php
+                        }
+                        if ($row['status'] == "Returned") {
+
+                        ?><td>
+                                <p style="color:green;"><small>
+                                        <?php
+                                        echo $row["status"]; ?>
+                                    </small></p>
+                            </td>
+
+                        <?php
+
+
+                        }
+
+
+                        if ($row['status'] == "On loan") {
+
+                        ?><td>
+                                <p style="color:firebrick;"><small>
+                                        <?php
+                                        echo $row["status"]; ?>
+                                    </small></p>
+                            </td>
+
+                        <?php
+
+
+                        }
+
+
+
+                        echo "<td>";
+                        echo $row["date_borrowed"];
+                        echo "</td>";
+                        echo "<td>";
+                        echo $row["date_return"];
+                        echo "</td>";
+                        echo "<td>";
+                        echo $row["date_count"];
+                        echo "</td>";
+                        echo "<td>";
+                        echo $row["date_user_return"];
+                        echo "</td>";
+                        echo "<td>";
+                        echo $row["firstname"];
+                        echo "</td>";
+                        echo "<td>";
+                        echo $row["lastname"];
+                        echo "</td>";
+
+
+
+                        echo "<td>";
+                        ?>
+                        <a href="return.php?edit=<?php echo $row['book_id']; ?>&type=<?php echo $row['transaction_id']; ?>" class="btn btn-primary btn-sm">Return</a>
+                    <?php
+
+                        echo "</td>";
+                        echo "</tr>";
+                    }
+
+                    echo "</table>";
+
+                    ?>
+
+                </div>
+            </div>
+
+
+
+        </div>
+
 
 
         <script>
