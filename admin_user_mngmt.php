@@ -361,8 +361,12 @@ include_once("src/inc/admin_checker.php");
 
         <div id="books" class="tabcontent">
             <!-- <h2>Book Inventory</h2> -->
-            <p>Manage books.</p><br>
+            <div class="d-flex justify-content-between">
+                <p>Manage books.</p><br>
 
+                <a href="add_book.php" class="btn btn-primary btn-sm">Add Book</a>
+            </div>
+            <br>
 
 
             <!-- Search box for Manage books TAB -->
