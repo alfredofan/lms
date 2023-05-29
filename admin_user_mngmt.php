@@ -157,7 +157,7 @@ include_once("src/inc/admin_checker.php");
 
 
             <form class="d-flex justify-content-center align-items-center" action="" name="searchbox" id="searchbox">
-                <div class="col-4 p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+                <div class="col-4 p-1 bg-light rounded rounded-pill shadow-sm mb-4" style="min-width: 200px;">
                     <div class="input-group d-flex justify-content-center align-items-center">
                         <input type="search" name="search_user" id="search_user" placeholder="Search User" aria-describedby="button-addon1" class="form-control border-0 bg-light" style="margin: 0px; padding: 0px;">
                         <div class="input-group-append">
@@ -373,7 +373,7 @@ include_once("src/inc/admin_checker.php");
 
 
             <form class="d-flex justify-content-center align-items-center" action="" name="searchbox" id="searchbox">
-                <div class="col-4 p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+                <div class="col-4 p-1 bg-light rounded rounded-pill shadow-sm mb-4" style="min-width: 200px;">
                     <div class="input-group d-flex justify-content-center align-items-center">
                         <input type="search" name="search_book" id="search_book" placeholder="Search Book" aria-describedby="button-addon1" class="form-control border-0 bg-light" style="margin: 0px; padding: 0px;">
                         <div class="input-group-append">
@@ -713,11 +713,11 @@ include_once("src/inc/admin_checker.php");
 
 
 
+        <!-- Not in Use, decided to keep it only on the dashboard ("my details") -->
 
-
-        <div id="details" class="tabcontent">
-            <!-- <h3>My Details</h3> -->
-            <p>Manage your details.</p><br>
+        <!-- <div id="details" class="tabcontent"> -->
+        <!-- <h3>My Details</h3> -->
+        <!-- <p>Manage your details.</p><br>
 
             <div class="container-sm d-flex justify-content-center" id="userdetails" style="margin-top:25px">
 
@@ -727,26 +727,31 @@ include_once("src/inc/admin_checker.php");
                         <div class="row d-flex flex-row container-text justify-content-center" role="row" style="width:fit-content; margin-top:0px">
                             <div class="col-12 col-md-4 d-flex justify-content-center align-items-center" role="gridcell" style="width:fit-content">
                                 <?php
-                                echo '<img src="img/user_img/' . $image . '" class="img-fluid " id="profile-photo" alt="profile photo" style="">';
+                                //echo '<img src="img/user_img/' . $image . '" class="img-fluid " id="profile-photo" alt="profile photo" style="">';
                                 ?>
                             </div>
-                            <div class="col-12 col-md-6 p-2" role="gridcell" style="width:fit-content"> <!--alternative for "flex row reverse" in this case would be "order-md-last" -->
-                                <h2 class="d-flex flex-row align-items-center justify-content-start" style="font-size: clamp(22px, 4vw, 45px);">
-                                    <?php echo $firstname . ' ' . $lastname; ?>
+                            <div class="col-12 col-md-6 p-2" role="gridcell" style="width:fit-content"> alternative for "flex row reverse" in this case would be "order-md-last" -->
+        <!-- <h2 class="d-flex flex-row align-items-center justify-content-start" style="font-size: clamp(22px, 4vw, 45px);">
+                                    <? php // echo $firstname . ' ' . $lastname; 
+                                    ?>
                                 </h2>
-                                <h6 class="card-subtitle mb-2 text-muted"><?php echo $email ?></h6>
-                                <p class="card-text" style="margin-bottom: 0px;"><small>User type &#8231; <?php echo $typename ?></small></p>
-                                <p class="card-text mb-3" style="margin-bottom: 0px;"><small>User ID &#8231; <?php echo $user_id ?></small></p>
+                                <h6 class="card-subtitle mb-2 text-muted"><?php //echo $email 
+                                                                            ?></h6>
+                                <p class="card-text" style="margin-bottom: 0px;"><small>User type &#8231; <?php //echo $typename 
+                                                                                                            ?></small></p>
+                                <p class="card-text mb-3" style="margin-bottom: 0px;"><small>User ID &#8231; <?php //echo $user_id 
+                                                                                                                ?></small></p>
 
 
-                                <a href="user.php?edit=<?php echo $user_id; ?>" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="user.php?edit=<?php //echo $user_id; 
+                                                        ?>" class="btn btn-primary btn-sm">Edit</a>
 
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
 
@@ -772,7 +777,7 @@ include_once("src/inc/admin_checker.php");
 
 
             <form class="d-flex justify-content-center align-items-center" action="" name="searchbox" id="searchbox">
-                <div class="col-4 p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+                <div class="col-4 p-1 bg-light rounded rounded-pill shadow-sm mb-4" style="min-width: 200px;">
                     <div class="input-group d-flex justify-content-center align-items-center">
                         <input type="search" name="search_transaction" id="search_transaction" placeholder="Search Transaction" aria-describedby="button-addon1" class="form-control border-0 bg-light" style="margin: 0px; padding: 0px;">
                         <div class="input-group-append">
@@ -1094,9 +1099,49 @@ include_once("src/inc/admin_checker.php");
                             echo "<td>";
                             echo $row["date_return"];
                             echo "</td>";
-                            echo "<td>";
-                            echo $row["date_count"];
-                            echo "</td>";
+
+
+                            // ==========================
+                            //  Date Count for table
+                            // ==========================
+
+
+                            //echo $row["date_count"];
+                            $currentDate = new DateTime();
+
+                            // Convert the password timestamp to a DateTime object
+                            $borrowTimestamp = new DateTime($row["date_borrowed"]);
+
+                            // Calculate the interval between the password timestamp and the current date
+                            $interval = $borrowTimestamp->diff($currentDate);
+
+                            // Get the number of days from the interval
+                            $dateCount = $interval->days;
+
+                            $int_dateCount = (int)$dateCount;
+
+                            if ($int_dateCount >= 21) { //21 days return policy
+
+                            ?>
+
+                                <td>
+                                    <p style="color:firebrick;"><small>
+                                            <?php
+                                            echo $int_dateCount;
+                                            ?>
+                                        </small></p>
+                                </td>
+
+
+                            <?php
+
+                            } else {
+                                echo "<td>";
+                                echo  $int_dateCount;
+                                echo "</td>";
+                            }
+
+
                             echo "<td>";
                             echo $row["date_user_return"];
                             echo "</td>";

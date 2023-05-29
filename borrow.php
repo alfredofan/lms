@@ -103,8 +103,8 @@ if (isset($_GET['edit'])) {
                     </p>
 
                     <?php
-
-                    if ($row2["status"] == "Available") {
+                    //if book available and transaction value is empty
+                    if ($row2["status"] == "Available" && empty($_GET['type'])) {
 
                     ?>
                         <p style="color:gray;"><small>
@@ -134,7 +134,8 @@ if (isset($_GET['edit'])) {
 
                     <?php
                     }
-                    if ($row2['status'] == "On loan") {
+                    // if status is on loan or bbook has an transaction value
+                    if ($row2['status'] == "On loan" || isset($_GET['type'])) {
 
                     ?>
                         <p style="color:firebrick;"><small>
@@ -233,24 +234,53 @@ if (isset($_POST['submit_status'])) {
         // `lastname`='$lastname', `typename`='$typename' ;";
 
         if (mysqli_query($db, $query1) and mysqli_query($db, $query2)) {
-            // now that the row was created with the transaction data, we go and fetch details from the same transaction in case user wants to return book.
-            $query4 = "SELECT * FROM book_transactions WHERE date_borrowed= '$timestamp' and book_id= '$id' and user_id= '$user_id'; ";
-            // connect to db and add query
-            $result = mysqli_query($db, $query4);
-            //fetch data
-            $row = mysqli_fetch_assoc($result);
 
-            $transaction_id = $row['transaction_id'];
         ?>
 
             <!--testing session variale -->
             <script type="text/javascript">
                 alert("Book Borrowed Successfully.");
                 //reload page to get updated fields
-                window.location = "borrow.php?edit=<?php echo $row['book_id']; ?>&type=<?php echo $transaction_id; ?>";
+                window.location = "browse.php";
             </script>
 
+            <?php
+
+            // =================================================================
+            //       Atempt to make borrow option refresh in the same page              Issue was no able to fetch the transaction id whithout having to press confirm button twice (Failed)
+            //==================================================================
+
+            //             // now that the row was created with the transaction data, we go and fetch details from the same transaction in case user wants to return book.
+            //             $query4 = "SELECT * FROM book_transactions WHERE date_borrowed= '$timestamp' and book_id= '$id' and user_id= '$user_id'; ";
+            //             // connect to db and add query
+            //             $result = mysqli_query($db, $query4);
+            //             //fetch data
+            //             $row = mysqli_fetch_assoc($result);
+
+
+
+            //             if (isset($row['transaction_id'])) {
+            //                 $transaction_id = $row['transaction_id'];
+            //             }
+            //             if (isset($transaction_id)) {
+
+            //             
+            ?>
+
+            // <!--testing session variale -->
+            <!-- //                 <script type="text/javascript"> -->
+            <!-- //                     alert("Book Borrowed Successfully.");
+//                     //reload page to get updated fields
+//                     window.location = "borrow.php?edit=<? // php echo $row['book_id']; 
+                                                            ?>&type=<?php //echo $transaction_id; 
+                                                                    ?>";
+//                 </script> -->
+
 <?php
+            //             }
+            //=========================================================================================================================
+
+
         }
     }
 } else
