@@ -10,82 +10,85 @@ include_once("src/inc/admin_checker.php");
     <!--     Create Login form here and on success redirect user to the dashboard    -->
     <section class="container-form col bd-content ps-lg-2">
 
-        <h1>Sign Up</h1><br><br>
+        <h1>Add Book</h1><br><br>
 
-        <form class="col align-self-center" name="signup" action="#" method="post">
+        <form class="col align-self-center" action="#" method="post" enctype="multipart/form-data">
+
             <div class="row mb-3">
                 <div class="col align-self-center">
-                    <label for="firstname" class="form-label">First Name</label>
+                    <label for="booktile" class="form-label">Book Cover</label>
                     <div class="col-12">
-                        <input type="text" class="form-control" id="firstname" name="firstname" aria-label="First name" maxlength="20" pattern="[a-zA-Z]+" required title="This field allows only letters, space, and dots for upper and lower case letters." oninvalid="this.setCustomValidity('Enter the complete details')" oninput="setCustomValidity('')">
-                        <!-- onivalid and oniput were used to change the default message for empty field submission atempt -->
+                        <input type="file" class="form-control" id="image" name="image" aria-label="Book cover">
+                    </div>
+                </div>
+            </div>
+            <?php
+            // if (isset($_FILES['image'])) {
+            //     move_uploaded_file($_FILES['image']['tmp_name'], "img/" . $_FILES['image']['name']);
+            // } else {
+            //     echo "image not found!";
+            // }
 
+            ?>
+            <div class="row mb-3">
+                <div class="col align-self-center">
+                    <label for="booktile" class="form-label">Book Title</label>
+                    <div class="col-12">
+                        <input type="text" class="form-control" id="book_title" name="book_title" aria-label="Book title">
                     </div>
                 </div>
             </div>
 
             <div class="row mb-3">
-                <label for="lastname" class="form-label">Last Name</label>
+                <label for="author" class="form-label">Author</label>
                 <div class="col-sm-12">
-                    <input type="text" class="form-control" id="lastname" name="lastname" aria-label="Last name" maxlength="20" pattern="[a-zA-Z]+" required title="This field allows only letters, space, and dots for upper and lower case letters." oninvalid="this.setCustomValidity('Enter the complete details')" oninput="setCustomValidity('')">
+                    <input type="text" class="form-control" id="author" name="author" aria-label="Author">
 
                 </div>
             </div>
 
             <div class="row mb-3">
-                <label for="email" class="form-label">Email</label>
+                <label for="pulisher" class="form-label">Publisher</label>
                 <div class="col-sm-12">
-                    <!-- Type "email" was working fine but in order to meet validation criteria on assessment, type "text" and pattern were added.   -->
-                    <input type="text" class="form-control" id="email" name="email" aria-label="Email" minlength="3" maxlength="100" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required title="This field must have a valid email address." oninvalid="this.setCustomValidity('This field must have a valid email address.')" oninput="setCustomValidity('')">
-
-
-                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                </div>
-            </div>
-            <!-- Password must meet gelos password policy containing at least one special character, one number, one uppercase and lowercase letter, and at least 8 or more characters -->
-            <div class="row mb-3">
-                <label for="password" class="form-label">Password</label>
-                <div class="col-sm-12">
-                    <input type="password" class="form-control" id="password" name="password" minlength="8" pattern="((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Must contain at least one number and one special character, one number, one uppercase and lowercase letter, and at least 8 or more characters" required>
+                    <input type="text" class="form-control" id="publisher" name="publisher" aria-label="Publisher">
                 </div>
             </div>
 
             <div class="row mb-3">
-                <label for="confirm_password" class="form-label">Confirm Password</label>
+                <label for="language" class="form-label">Language</label>
                 <div class="col-sm-12">
-                    <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+                    <select type="" class=" form-select " id="language" name="language" aria-label="language">
+                        <option value="English" selected>English</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Russian">Russian</option>
+                        <option value="French">French</option>
+                        <option value="German">German</option>
+                        <option value="Mandarin">Mandarin</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="row mb-3">
+                <label for="category" class="form-label">Category</label>
+                <div class="col-sm-12">
+                    <select class=" form-select" id="category" name="category" aria-label="category">
+                        <option value="Fiction" selected>Fiction</option>
+                        <option value="Nonfiction">Nonfiction</option>
+                        <option value="Reference">Reference</option>
+                    </select>
                 </div>
             </div>
 
-            <!-- Matching fields "password" and "confirm password"  for verification -->
-            <script>
-                var password = document.getElementById("password"),
-                    confirm_password = document.getElementById("confirm_password");
+            <!-- As soon as book is added it is shown as available -->
+            <input style="display: none;" type="text" name="status" value="Available">
 
-                function validatePassword() {
-                    if (password.value != confirm_password.value) {
-                        confirm_password.setCustomValidity("Passwords Don't Match");
-                    } else {
-                        confirm_password.setCustomValidity('');
-                    }
-                }
-
-                password.onchange = validatePassword;
-                confirm_password.onkeyup = validatePassword;
-            </script>
-
-            <!-- Sign up allow only normal user "member" and blank user photo-->
-            <input style="display: none;" type="text" name="typename" value="User">
-            <input style="display: none;" type="number" name="type" value="2">
-            <input style="display: none;" type="text" name="image" value="blank.png">
-
-            <button type="submit" name="submit" class="btn btn-primary btn-sm mb-3">Submit</button>
-
+            <button type="submit" name="submit" class="btn btn-primary btn-sm">Save</button>
 
         </form>
 
         <?php
-        // check if email already exist in the database  
+        // check if book title already exist in the database  
 
 
         // triggers uppon pressing submit button
@@ -93,11 +96,11 @@ include_once("src/inc/admin_checker.php");
 
             //check duplicates for email 
             $count = 0;
-            $sql = "SELECT email FROM user";
+            $sql = "SELECT book_title FROM book";
             $result = mysqli_query($db, $sql);
 
             while ($row = mysqli_fetch_assoc($result)) {
-                if ($row['email'] == $_POST['email']) {
+                if ($row['book_title'] == $_POST['book_title']) {
                     $count = $count + 1;
                 }
             }
@@ -106,25 +109,114 @@ include_once("src/inc/admin_checker.php");
                 //if no duplicates found, user can register
 
 
+
+                // for image the function move_uploaded_file(filename, destination) note that image is the name given of the input tag
+                move_uploaded_file($_FILES['image']['tmp_name'], "img/" . $_FILES['image']['name']);
+
+
                 // timestamp for new password submission
                 $date = new DateTime(''); // output: string(19) "2022-10-09 18:39:16"
                 $timestamp = $date->format('Y-m-d H:i:s');
 
 
+                //table book columns 
+                $book_title = $_POST['book_title'];
+                $author     = $_POST['author'];
+                $publisher  = $_POST['publisher'];
+                $language   = $_POST['language'];
+                $category   = $_POST['category'];
+                $status     = $_POST['status'];
 
-                mysqli_query($db, "INSERT INTO `USER` (`firstname`, `lastname`, `email`, `password`, `typename`, `type`, `image`,`password_timestamp` ) 
-     VALUES('$_POST[firstname]', '$_POST[lastname]','$_POST[email]','$_POST[password]',
-     '$_POST[typename]','$_POST[type]','$_POST[image]', '$timestamp');");
+
+                $image      = $_FILES['image']['name'];
+
+
+
+
+                // check if image $_FILES is empty or not
+                if ($image == "") {
+
+                    //empty cover image
+                    $empty_cover = "empty_cover.png";
+
+
+                    $sql1 =  "INSERT INTO `book` (`book_title`, `author`, `publisher`, `language`, `category`, `image`) 
+    VALUES('$_POST[book_title]', '$_POST[author]','$_POST[publisher]','$_POST[language]',
+    '$_POST[category]','$empty_cover');";
+
+                    // is added successfully
+                    if (mysqli_query($db, $sql1)) {
+
+
+                        // find the book_id of new book
+                        $query3 = "SELECT * FROM book WHERE book_title = '$_POST[book_title]'";
+
+                        // connect to db and add query
+                        $result3 = mysqli_query($db, $query3);
+                        //fatch data from book table
+                        $row3 = mysqli_fetch_assoc($result3);
+
+
+                        $book_id = $row3['book_id'];
+
+
+
+                        // add status, user id and timestamp to book_status table
+                        $query1 =  "INSERT INTO `book_status` (`user_id`, `status`, `applied_date`, `book_id`) 
+                            VALUES('$_SESSION[user_id]', '$_POST[status]','$timestamp','$book_id');";
+
+                        if (mysqli_query($db, $query1)) {
+
         ?>
-                <script type="text/javascript">
-                    alert("Registration Successfull");
-                    window.location = "login.php"
-                </script>
-            <?php
+                            <script type="text/javascript">
+                                alert("Book added Successfully.");
+                                //reload page to get updated fields
+                                window.location = "book.php?edit=<?php echo $row3['book_id']; ?>";
+                            </script>
+                        <?php
+
+
+                        }
+                    }
+                } else {
+
+                    $sql2 =  "INSERT INTO `book` (`book_title`, `author`, `publisher`, `language`, `category`, `image`) 
+     VALUES('$_POST[book_title]', '$_POST[author]','$_POST[publisher]','$_POST[language]',
+     '$_POST[category]','$image');";
+
+                    if (mysqli_query($db, $sql2)) {
+                        $query3 = "SELECT * FROM book WHERE book_title = '$_POST[book_title]'";
+
+                        // connect to db and add query
+                        $result3 = mysqli_query($db, $query3);
+                        //fatch data from book table
+                        $row3 = mysqli_fetch_assoc($result3);
+
+
+                        $book_id = $row3['book_id'];
+
+                        // add status, user id and timestamp to book_status table
+                        $query2 =  "INSERT INTO `book_status` (`user_id`, `status`, `applied_date`, `book_id`) 
+                                            VALUES('$_SESSION[user_id]', '$_POST[status]','$timestamp','$book_id');";
+
+                        if (mysqli_query($db, $query2)) {
+
+                        ?>
+                            <script type="text/javascript">
+                                alert("Book added Successfully.");
+                                //reload page to get updated fields
+                                window.location = "book.php?edit=<?php echo $row3['book_id']; ?>";
+                            </script>
+                <?php
+
+
+                        }
+                    }
+                }
             }
             // if duplicate is found
             else {
-            ?>
+                ?>
 
 
                 <!-- alert message window-->
@@ -143,7 +235,7 @@ include_once("src/inc/admin_checker.php");
                         <use xlink:href="#exclamation-triangle-fill" />
                     </svg>
                     <div>
-                        Email is already registered.
+                        Book is already registered.
                     </div>
                 </div>
 
@@ -152,15 +244,11 @@ include_once("src/inc/admin_checker.php");
 
             }
         }
+
         ?>
 
 
-        <p>
-            <br><br>
-            Already have an account?
-            <br>
-            <a href="login.php" class="btn btn-outline-secondary btn-sm" type="button">Log in</a>
-        </p>
+
 
 
     </section>

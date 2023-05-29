@@ -149,7 +149,7 @@ include_once("src/inc/header.inc.php");
                                 ?>');
                     </script>
 
-            <?php
+                <?php
                 }
 
 
@@ -166,17 +166,18 @@ include_once("src/inc/header.inc.php");
 
 
                 // )';
-            }
-
-            header("location:index.php");
 
 
-            ?>
-            <script type="text/javascript">
-                window.location = "browse.php"
-            </script>
+                header("location:index.php");
+
+
+                ?>
+                <script type="text/javascript">
+                    window.location = "browse.php"
+                </script>
 
         <?php
+            }
         }
 
 

@@ -2,6 +2,7 @@
 include_once("src/inc/config.php");
 include_once("src/inc/header.inc.php");
 include_once("src/inc/session_checker.php");
+include_once("src/inc/admin_checker.php");
 
 ?>
 
@@ -65,6 +66,7 @@ if (isset($_GET['edit'])) {
                     <p style="padding-top: 30px ;font-size: clamp(15px, 2vw, 22px); text-align:justify">
                         <!-- space reserved for book synopsis -->
                     </p>
+                    <p class="card-text" style="margin-bottom: 0px;"><small>Status</small></p>
                     <form class="col align-self-center" action="#" method="post" enctype="multipart/form-data" style="margin: 0px">
                         <select class="form-select mb-3" name="status" id="status" aria-label="Default select example" style="width:fit-content;">
                             <option selected><?php echo $row2['status'] ?? ''; ?></option>
@@ -179,6 +181,9 @@ if (isset($_POST['submit_status'])) {
                         <option value="English">English</option>
                         <option value="Japanese">Japanese</option>
                         <option value="Russian">Russian</option>
+                        <option value="French">French</option>
+                        <option value="German">German</option>
+                        <option value="Mandarin">Mandarin</option>
                     </select>
                 </div>
 
